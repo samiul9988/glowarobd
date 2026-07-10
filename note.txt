@@ -1,0 +1,44 @@
+Backend
+1. 'reviews' table 'user_id' column need to be nullable.
+
+Category section cache
+uni means unique- jeno onno kono name er sathe conflict na hoy.
+1. 'category_uni'.$request->id,  86400,
+2. 'first_uni_immediate_children_ids_'.$first_level_id, 86400
+3. 'second_uni_immediate_children_ids_'.$second_level_id, 86400
+4. category
+    'uni_home_categories_'.$id
+    'category_mobile_uni'
+    'uni_category_children'.$id
+5.  top brand-
+    'uni_top10_brands_first_'.$key
+    'uni_top10_brands_second_'.$key
+6.product-
+    'uni_product_'.$id
+
+5.footer-
+    'uni_user_id',
+    'uni_cart_auth'
+    'uni_cart_temp'
+6. freature rand product -
+    'uni_freature_rand_product'
+
+
+
+For api
+===================
+1.slider - 
+    'api_uploded_file_' . $id, 86400,
+
+2. all banner -
+   'uni_api_product' . $key, 86400,
+   'uni_api_category' . $key, 86400,
+   'uni_api_brand' . $key, 86400,
+   'uni_api_flash-deal' . $key, 86400,
+
+3. category product - 
+    'uni_get_the_id_'.$id
+    'uni_get_the_id_by_slug_'.$id
+
+4. uploas asset helper function
+    'uni_uploded_file_'.$id

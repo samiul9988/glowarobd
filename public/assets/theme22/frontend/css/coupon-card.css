@@ -1,0 +1,167 @@
+.coupon-card {
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #f0f0f0;
+    overflow: hidden;
+    position: relative;
+}
+
+.coupon-content {
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.left-section {
+    flex: 0 0 30%;
+    text-align: left;
+}
+
+.discount-text {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    line-height: 1;
+    margin-bottom: 0;
+}
+
+.off-text {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.vertical-divider {
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent 0%, #ddd 20%, #ddd 80%, transparent 100%);
+    background-image: repeating-linear-gradient(to bottom, #ddd 0px, #ddd 3px, transparent 3px, transparent 8px);
+    margin: 0;
+    margin-left: 5px;
+    margin-right: 20px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.vertical-divider::before,
+.vertical-divider::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #e8f5e8;
+    border-radius: 50%;
+    left: -7px;
+}
+
+.vertical-divider::before {
+    top: -8px;
+}
+
+.vertical-divider::after {
+    bottom: -8px;
+}
+
+.right-section {
+    flex: 0 0 65%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 0;
+}
+
+.right-text {
+    flex: 1;
+    padding-right: 15px;
+}
+
+.days-left {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+    line-height: 1.2;
+}
+
+.valid-until {
+    font-size: 13px;
+    color: #888;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.coupon-arrow {
+    width: 50px;
+    height: 24px;
+    background-color: #00c851;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .coupon-content {
+        padding: 20px 15px;
+    }
+
+    .discount-text {
+        font-size: 28px;
+    }
+
+    .off-text {
+        font-size: 12px;
+    }
+
+    .vertical-divider {
+        margin: 0 15px;
+        height: 50px;
+    }
+
+    .days-left {
+        font-size: 14px;
+    }
+
+    .valid-until {
+        font-size: 11px;
+    }
+
+    .coupon-arrow {
+        width: 45px;
+        height: 23px;
+        font-size: 9px;
+    }
+
+    .right-text {
+        padding-right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .discount-text {
+        font-size: 24px;
+    }
+
+    .vertical-divider {
+        margin: 0 10px;
+    }
+
+    .coupon-content {
+        padding: 15px 12px;
+    }
+
+    .left-section {
+        flex: 0 0 20%;
+    }
+}

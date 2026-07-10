@@ -1,0 +1,1 @@
+<div id="{{ $id ?? 'loader' }}" class="overlay opacity-40 {{ @$class }}" style="cursor: wait !important; display: none; z-index: 9999; position: fixed; top: 0; left: 0; width: 100%; height: 100%;"></div>

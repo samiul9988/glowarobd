@@ -1,0 +1,160 @@
+/* Fira Code Font */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+.fira-code {
+    font-family: "Fira Code", monospace;
+  }
+
+a{
+    color: #004E98;
+}
+body{
+    font-family: "Fira Code", monospace;
+}
+.aiz-side-nav-list .aiz-side-nav-link:hover{
+    background-color: #343A40;
+}
+.aiz-side-nav-list .aiz-side-nav-link.active{
+    background-color: #343a40;
+}
+.aiz-side-nav-wrap .form-control::placeholder{
+    color: #fff;
+}
+.aiz-side-nav-list .aiz-side-nav-link:hover .aiz-side-nav-icon{
+    color: #fff;
+}
+.show.bootstrap-select .dropdown-toggle{
+    border-color: #004E98 !important;
+}
+.bootstrap-select .dropdown-toggle:focus{
+    border-color: #004E98;
+}
+.daterangepicker .ranges li.active{
+    background-color: #004E98;
+}
+.form-control:focus{
+    border-color: #004E98;
+}
+.btn-primary{
+    background-color: #004e98;
+    border-color: #004e98;
+}
+.btn-primary:hover{
+    background-color: #04315c !important;
+    border-color: #04315c !important;
+}
+.btn-primary:disabled{
+    background-color: #004f989d;
+    border-color: #004f989d;
+}
+.aiz-main-wrapper{
+    background-color: #e0e1dd;
+
+    .aiz-sidebar.left{
+        background-color: #495057;
+
+        .aiz-side-nav-logo-wrap{
+            background-color: #51575e;
+        }
+
+        .aiz-side-nav-wrap{
+            .form-control{
+                background-color: #6c757d !important;
+            }
+        
+            .aiz-side-nav-list{
+                .aiz-side-nav-link{
+                    color: #e0e1dd;
+                }
+            } 
+
+            .aiz-side-nav-list{
+                .aiz-side-nav-icon{
+                    color: #e0e1dd;
+                }
+            }
+        }
+    }
+
+    .alert-info{
+        background-color: #8d99ae;
+        border-color: #8d99ae ;
+        color: #fff;
+    }
+
+    .aiz-main-content{
+        
+
+        .bg-grad-1{
+            background: #882D10 !important;
+            background: radial-gradient(at left top, #882D10, #907B15) !important;
+        }
+        .bg-grad-2{
+            background: #2C9CD7 !important;
+            background: radial-gradient(at left top, #2C9CD7, #80E968) !important;
+        }
+        .bg-grad-3{
+            background: #CB6E7B;
+            background: linear-gradient(225deg, #CB6E7B, #751822) !important;
+        }
+        .bg-grad-4{
+            background: #1DD0CB;
+            background: linear-gradient(225deg, #1DD0CB, #A42FBF) !important;
+        }
+
+        .btn-soft-primary{
+            background-color: #004f9883;
+            color: #fff;
+        }
+
+        .btn-soft-primary:hover{
+            background-color: #004e98;
+            border-color: #004e98;
+        }
+
+        .card{
+            .card-body{
+                .btn-secondary{
+                    .badge-primary{
+                        background-color: #004E98;
+                    }
+                }
+
+                .aiz-table{
+                    .footable-toggle{
+                        color: #fff;
+                        background-color: #004E98;
+                    }
+
+                    .aiz-checkbox{
+                        .aiz-square-check::after{
+                            border: solid #004E98;
+                        }
+                    }
+                }
+
+                .pagination{
+                    .active{
+                        .page-link{
+                            background-color: #004E98;
+                        }
+                    }
+
+                    .page-link:hover{
+                        background-color: #004E98;
+                    }
+                }
+            }
+        }
+
+        .dropdown {
+            .dropdown-menu{
+                .dropdown-item.active{
+                    background-color: #004E98;
+                }
+            }
+            .dropdown-item:hover{
+                background-color: #004E98;
+            }
+        }
+    }
+}

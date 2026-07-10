@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirect /products/{any-product} to /{any-product}
+    #RewriteCond %{REQUEST_URI} ^/products/(.*)$
+    #RewriteRule ^products/(.*)$ /$1 [L,R=301]
+
+    # Redirect to www with HTTPS
+    # RewriteCond %{HTTPS} off [OR]
+    # RewriteCond %{HTTP_HOST} !^www\. [NC]
+    # RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+    # RewriteRule ^ https://www.%1%{REQUEST_URI} [R=301,L,NE]
+
+    # Redirect all requests to the "public" directory
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

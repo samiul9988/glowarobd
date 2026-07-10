@@ -1,0 +1,38 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Remove .html from URLs (permanent redirect)
+    RewriteCond %{THE_REQUEST} "\s/(.*?).html[\s?]" [NC]
+    RewriteRule ^(.*?).html$ /$1 [L,R=301]
+
+    # Redirect /public/products/ or /products/ to clean root URL
+    RewriteCond %{REQUEST_URI} ^/(public/)?products/(.*)$ [NC]
+    RewriteRule ^(public/)?products/(.*)$ /$2 [L,R=301]
+
+    # Remove 'public/' from URLs
+    RewriteCond %{REQUEST_URI} ^/public/(.*)$
+    RewriteRule ^public/(.*)$ /$1 [L,R=301]
+
+    # Redirect Trailing Slashes If Not A Folder
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} .+/$
+    RewriteRule (.*)/$ /$1 [L,R=301]
+
+    # 🚫 Do not pass /uploads to Laravel
+    RewriteCond %{REQUEST_URI} ^/uploads/ [NC]
+    RewriteRule ^ - [L]
+
+    # Send Requests To Laravel Front Controller
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>

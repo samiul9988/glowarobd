@@ -1,0 +1,23 @@
+{
+    "name": "coder71/waitlist",
+    "description": "",
+    "authors": [
+        {
+            "name": "Coder71 Ltd.",
+            "email": "info@coder71.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Waitlist\\": ""
+        }
+    }
+}

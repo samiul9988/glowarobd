@@ -1,0 +1,32 @@
+{
+    "platform_order_id": 194870,
+    "order_source": "web",
+    "platform_source": "kireibd",
+    "shipping_address": {
+        "name": "Kireibd-ADMIN",
+        "email": null,
+        "address": "Banasree test",
+        "city_id": "2",
+        "state": "Chittagong",
+        "zone_id": "685",
+        "city": "Nasirabad",
+        "area_id": null,
+        "area": null,
+        "phone": "01812949004"
+    },
+    "payment_type": "cash_on_delivery",
+    "delivery_status": "pending",
+    "date": "2024-11-26 00:00:00",
+    "note": null,
+    "shipping_cost": 130,
+    "order_details": [
+        {
+            "supplier": "glowaro",
+            "supplier_product_id": 735,
+            "quantity": 1,
+            "wholesale_price": 550,
+            "mrp_price": 799
+        }
+    ],
+    "grand_total": 680
+}

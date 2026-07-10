@@ -1,0 +1,114 @@
+{
+    "name": "laravel/laravel",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": "^8.2",
+        "authorizenet/authorizenet": "^2.0",
+        "niklasravnsborg/laravel-pdf": "^4.0",
+        "barryvdh/laravel-ide-helper": "^3.0",
+        "cinetpay/cinetpay-php": "^1.9",
+        "enan/pathao-courier": "^1.0",
+        "firebase/php-jwt": "^7.0",
+        "guzzlehttp/guzzle": "^7.2",
+        "http-interop/http-factory-guzzle": "^1.2",
+        "instamojo/instamojo-php": "^0.4.0",
+        "intervention/image": "^2.7",
+        "iyzico/iyzipay-php": "^2.0",
+        "jenssegers/agent": "^2.6",
+        "laracasts/flash": "^3.0",
+        "laravel/framework": "^12.0",
+        "laravel/octane": "^2.13",
+        "laravel/passport": "^13.0",
+        "laravel/reverb": "^1.6",
+        "laravel/sanctum": "^4.0",
+        "laravel/scout": "^10.0",
+        "laravel/socialite": "^5.6",
+        "laravel/tinker": "^2.8",
+        "laravel/ui": "^4.5",
+        "lcobucci/jwt": "^4.3.0|^5.0",
+        "league/flysystem-aws-s3-v3": "^3.0",
+        "maatwebsite/excel": "^3.1",
+        "meilisearch/meilisearch-php": "^1.16",
+        "mpdf/mpdf": "^8.2",
+        "nwidart/laravel-modules": "^12.0",
+        "osenco/mpesa": "^2.0",
+        "pbmedia/laravel-ffmpeg": "^8.0",
+        "picqer/php-barcode-generator": "^3.0",
+        "predis/predis": "^3.0",
+        "pusher/pusher-php-server": "^7.2",
+        "spatie/db-dumper": "^3.0",
+        "spatie/laravel-sitemap": "^7.2",
+        "stripe/stripe-php": "^19.0",
+        "twilio/sdk": "^8.0"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.8",
+        "fakerphp/faker": "^1.9.1",
+        "kitloong/laravel-migrations-generator": "^7.0",
+        "laravel/pint": "^1.0",
+        "laravel/sail": "^1.18",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^8.0",
+        "phpunit/phpunit": "^11.0",
+        "spatie/laravel-ignition": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        },
+        "files": ["app/Http/Helpers.php"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi",
+            "@php artisan override:view"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi",
+            "@php artisan storage:link --quiet"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        },
+        "merge-plugin": {
+            "include": [
+                "Modules/*/composer.json"
+            ]
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true,
+            "wikimedia/composer-merge-plugin": true
+        },
+        "platform": {
+            "ext-pcntl": "8.3",
+            "ext-posix": "8.3"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
