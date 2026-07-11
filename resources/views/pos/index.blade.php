@@ -934,6 +934,28 @@
             $('#start-call-timer').show();
         });
 
+        $('#shipping_address').on('change', 'input[name="address_id"]', function() {
+            var addressId = $(this).val();
+            if (addressId) {
+                busy();
+                $.ajax({
+                    headers: {'X-CSRF-TOKEN': AIZ.data.csrf},
+                    method: "POST",
+                    url: "{{ route('pos.set-shipping-address') }}",
+                    data: {address_id: addressId, _token: AIZ.data.csrf},
+                    success: function (response) {
+                        if (response.success) {
+                            phoneNumber = response.phone || phoneNumber;
+                        }
+                        free();
+                    },
+                    error: function () {
+                        free();
+                    }
+                });
+            }
+        });
+
         $('#shipping_address').on('input', 'input[name="phone"]', function() {
             var phone = normalizePhoneNumber($(this).val());
             $(this).val(phone); // Update the input field

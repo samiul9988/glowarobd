@@ -751,6 +751,7 @@ class PosController extends Controller
         return response()->json([
             'success' => 1,
             'message' => ('Shipping address has been set successfully.'),
+            'phone' => $data['phone'] ?? $request->phone,
         ]);
     }
 
