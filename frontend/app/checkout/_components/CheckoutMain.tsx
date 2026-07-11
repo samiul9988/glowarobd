@@ -357,7 +357,7 @@ export default function CheckoutMain() {
         address: selectedAddress.address,
       });
 
-      if (!validateData?.success) return null;
+      if (!validateData?.success && !validateData?.result) return null;
 
       // OTP verification temporarily disabled — use response directly.
       // To re-enable: uncomment lines below AND restore send_verification_code in backend.
