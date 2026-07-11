@@ -23,24 +23,26 @@ interface Props {
 const ProductCategory = async ({ params }: Props) => {
   const { category_slug } = await params;
 
-  // Fetch category details with correct type
-  const response = await cacheableFetcher<ApiResponse<CategoryDetails[]>>(
-    `/category/${category_slug}`,
-    {
-      next: {
-        revalidate: CATEGORY_REVALIDATE_TIME,
+  const [response, allCategories] = await Promise.all([
+    cacheableFetcher<ApiResponse<CategoryDetails[]>>(
+      `/category/${category_slug}`,
+      {
+        next: {
+          revalidate: CATEGORY_REVALIDATE_TIME,
+        },
       },
-    },
-  );
+    ),
+    fetchCategories(),
+  ]);
+
   const category = response?.data?.[0];
 
-  // get assign sub categories
-  const subResponse = await cacheableFetcher<{ data: Category[] }>(
-    `/sub-categories/${category?.id}`,
-    { next: { revalidate: 3600 } },
-  );
-
-  const allCategories = await fetchCategories();
+  const subResponse = category?.id
+    ? await cacheableFetcher<{ data: Category[] }>(
+        `/sub-categories/${category.id}`,
+        { next: { revalidate: 3600 } },
+      )
+    : null;
 
   return (
     <>

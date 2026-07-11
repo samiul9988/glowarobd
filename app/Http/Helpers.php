@@ -4815,7 +4815,7 @@ if (! function_exists('to_frontend')) {
                 'category' => '/category',
                 'brand' => '/brand',
                 'flash-deals' => '/flash-deals',
-                'page' => '/page',
+                'page' => '/pages',
                 'blog' => '/blog',
                 'sitemaps' => '/sitemaps',
                 'job' => '/jobs',
