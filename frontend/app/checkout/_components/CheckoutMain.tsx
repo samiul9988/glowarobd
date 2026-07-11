@@ -359,6 +359,9 @@ export default function CheckoutMain() {
 
       if (!validateData?.success) return null;
 
+      // OTP verification temporarily disabled — use response directly.
+      // To re-enable: uncomment lines below AND restore send_verification_code in backend.
+      /*
       toast.success(
         validateData.message ||
           "A verification code has been sent to your phone.",
@@ -370,6 +373,21 @@ export default function CheckoutMain() {
       });
 
       return otpResponse;
+      */
+
+      // Bypass: return response directly (backend now returns user_id + access_token)
+      if (validateData?.user_id) {
+        return {
+          success: true,
+          message: validateData.message || "Order placed successfully",
+          data: {
+            user_id: validateData.user_id,
+            access_token: validateData.access_token,
+          } as any as OTPVerificationResponse,
+        };
+      }
+
+      return null;
     };
 
   const trackPurchseEvent = async (response: OrderResponse) => {

@@ -401,11 +401,12 @@ class UserController extends Controller
             ], 500);
         }
 
-        $this->send_verification_code($user);
-        return response()->json([
-            'success' => true,
-            'message' => 'A verification code has been sent to your phone.',
-        ], 200);
+        // OTP verification temporarily disabled — send_verification_code skipped.
+        // To re-enable: uncomment line below AND remove the loginSuccess block.
+        // $this->send_verification_code($user);
+
+        $tokenResult = $user->createToken('Personal Access Token');
+        return $this->loginSuccess($tokenResult, $user);
     }
 
     public function resendCode(Request $request)
