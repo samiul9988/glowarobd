@@ -3,11 +3,11 @@
 // ============================
 export const apiBaseUrl =
   process.env.NEXT_PUBLIC_API_BASE_URL_LIVE ||
-  "https://control.glowaro.com/api/v3";
+  "https://api.glowaro.com/api/v3";
 
 export const apiBaseUrlV2 =
   process.env.NEXT_PUBLIC_API_BASE_URL_LIVE_V2 ||
-  "https://control.glowaro.com/api/v2";
+  "https://api.glowaro.com/api/v2";
 
 export const apiLiveBaseUrl =
   process.env.NEXT_PUBLIC_API_BASE_URL_LIVE_TEST ||
@@ -17,11 +17,11 @@ export const apiLiveBaseUrl =
 // Image URLs
 // ============================
 export const imageBaseUrl =
-  process.env.NEXT_PUBLIC_API_IMG_URL || "https://control.glowaro.com/";
+  process.env.NEXT_PUBLIC_API_IMG_URL || "https://api.glowaro.com/";
 
 export const imageBaseHostUrl =
   process.env.NEXT_PUBLIC_IMG_HOST_URL ||
-  "https://control.glowaro.com/";
+  "https://api.glowaro.com/";
 
 export const defaultImage = "/images/default-image.png";
 
