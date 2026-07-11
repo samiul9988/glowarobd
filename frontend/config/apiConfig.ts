@@ -26,6 +26,15 @@ export const imageBaseHostUrl =
 export const defaultImage = "/images/default-image.png";
 
 // ============================
+// AI API
+// ============================
+export const aiApiUrl =
+  process.env.NEXT_PUBLIC_AI_API_URL || "https://ai.glowaro.com";
+
+export const useAiApi =
+  process.env.NEXT_PUBLIC_USE_AI_API === "true";
+
+// ============================
 // Public Site URLs
 // ============================
 export const publicBaseUrl =
