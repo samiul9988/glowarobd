@@ -164,7 +164,7 @@ const TestimonialCard = ({ testimonial }: Props) => {
 
                       {/* Product Info */}
                       <Link
-                        href={`/${testimonial?.product?.slug}`}
+                        href={`/product/${testimonial?.product?.slug}`}
                         className="group border-site-primary-50 hover:border-site-primary-300 relative flex gap-2 rounded-[10px] border bg-gray-50 p-1 transition-colors lg:gap-4 lg:p-2"
                       >
                         <div className="relative inline-block h-[60px] w-[60px] shrink-0 overflow-clip rounded-sm md:h-[75px] md:w-[75px]">

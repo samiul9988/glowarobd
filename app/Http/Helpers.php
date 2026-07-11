@@ -4819,7 +4819,8 @@ if (! function_exists('to_frontend')) {
                 'blog' => '/blog',
                 'sitemaps' => '/sitemaps',
                 'job' => '/jobs',
-                default => ''
+                'product' => '/product',
+                default => '/product'
             };
             $frontendUrl .= '/'.$path;
         }

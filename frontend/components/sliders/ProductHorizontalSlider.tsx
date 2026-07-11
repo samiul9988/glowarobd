@@ -44,7 +44,7 @@ export default function ProductHorizontalSlider({ data }: Props) {
               className="py-2"
             >
               <Link
-                href={`/${product?.slug || "#"}`}
+                href={`/product/${product?.slug || "#"}`}
                 className="group hover:border-site-primary-300 relative flex gap-1 rounded-[10px] border border-gray-200 bg-gray-50 p-1.5 transition-colors lg:gap-4"
               >
                 {/* Image */}
