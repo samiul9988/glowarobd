@@ -4950,20 +4950,23 @@ if (! function_exists('existsOrCreateUser')) {
         if (str_starts_with($phone, '88') && strlen($phone) > 11) {
             $phone = substr($phone, 2);
         }
-        if (strlen($phone) != 11) {
-            return null;
+
+        $hasValidPhone = strlen($phone) == 11;
+
+        if ($hasValidPhone) {
+            $user = User::whereIn('phone', [$phone, '+88'.$phone])->first();
+        } else {
+            $user = null;
         }
-        $user = User::whereIn('phone', [$phone, '+88'.$phone])->first();
 
         if (! $user) {
             $user = new User;
-            $user->name = $payloads['name'] ?? 'POS User';
+            $user->name = $payloads['name'] ?? 'Walk In Customer';
             $user->email = $payloads['email'] ?? null;
             $user->address = $payloads['address'] ?? null;
-            $user->phone = $phone;
+            $user->phone = $hasValidPhone ? $phone : null;
             $password = Str::random(rand(8, 10));
             $user->password = bcrypt($password);
-            // $user->temp_password = $password;
             $user->email_verified_at = now()->toDateTimeString();
             $user->recent_login = null;
             $user->save();
@@ -4974,14 +4977,14 @@ if (! function_exists('existsOrCreateUser')) {
 
             $group = Customergroup::orderBy('ordering', 'asc')->first();
 
-            if ($group->count() > 0) {
+            if ($group && $group->exists) {
                 $first_group = new Customeringroup;
                 $first_group->user_id = $user->id;
                 $first_group->customer_groups_id = $group->id;
                 $first_group->status = 1;
                 $first_group->save();
             }
-            if (replaceExistingOrdersByUser($user->id, $phone)) {
+            if ($hasValidPhone && replaceExistingOrdersByUser($user->id, $phone)) {
                 fixUserGroup($user->id);
             }
             Log::channel('custom')->info("Created new user with ID {$user->id}", ['phone' => $phone]);
