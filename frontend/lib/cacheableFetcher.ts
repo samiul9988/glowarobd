@@ -2,19 +2,21 @@ import { apiBaseUrl } from "@/config/apiConfig";
 
 export async function cacheableFetcher<T>(
   url: string,
-  options: RequestInit & {baseUrl?: string, revalidate?: number } = {},
+  options: RequestInit & {baseUrl?: string, revalidate?: number, next?: { revalidate?: number }} = {},
 ): Promise<T | null> {
-  const { baseUrl = apiBaseUrl, revalidate, ...fetchOptions } = options;
+  const { baseUrl = apiBaseUrl, revalidate, next, ...fetchOptions } = options;
   const finalUrl = `${baseUrl}${url}`;
+  const revalidateTime = revalidate ?? next?.revalidate;
 
   try {
     const res = await fetch(finalUrl, {
       ...fetchOptions,
       headers: {
         "Content-Type": "application/json",
+        source: "web",
         ...(fetchOptions.headers || {}),
       },
-      next: revalidate ? { revalidate } : undefined,
+      next: revalidateTime ? { revalidate: revalidateTime } : undefined,
     });
 
     const data = await res.json();
