@@ -14,11 +14,19 @@ class EnsureGuestOrderAccess
         $guestOrderActive = get_setting('guest_order_activation');
 
         if ($guestOrderActive == 1 && $guard === 'api' && Str::startsWith($request->user_id, 'tmp')) {
-            // ✅ Guest checkout allowed
+            // ✅ Guest checkout with existing temp ID
             $request->merge([
                 'is_guest_user' => 1,
                 'user_field' => 'temp_user_id',
-                'user_id' => $request->user_id, // Keep the temp user ID as is
+                'user_id' => $request->user_id,
+            ]);
+        } elseif ($guestOrderActive == 1 && $guard === 'api' && empty($request->user_id)) {
+            // ✅ Guest checkout without ID — generate a new temp ID
+            $guestUserId = 'tmp_' . bin2hex(random_bytes(10));
+            $request->merge([
+                'is_guest_user' => 1,
+                'user_field' => 'temp_user_id',
+                'user_id' => $guestUserId,
             ]);
         } elseif ($guestOrderActive == 1 && $guard === 'web' && !Auth::check()) {
             // ✅ Guest checkout allowed
