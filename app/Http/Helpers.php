@@ -4947,6 +4947,9 @@ if (! function_exists('existsOrCreateUser')) {
         }
 
         $phone = trim(str_replace(['+88', '-', ' '], '', $payloads['phone'] ?? ''));
+        if (str_starts_with($phone, '88') && strlen($phone) > 11) {
+            $phone = substr($phone, 2);
+        }
         if (strlen($phone) != 11) {
             return null;
         }
