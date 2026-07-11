@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\ProductOrStockUpdated;
 use App\Exports\ProductsExport;
 use App\Exports\StockOutProductsExport;
 use App\Jobs\CacheProducts;
@@ -24,7 +23,6 @@ use App\Models\User;
 use App\Utility\CategoryUtility;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -637,9 +635,13 @@ class ProductController extends Controller
 
         flash(('Product has been inserted successfully'))->success();
 
-        dispatch(function () {
-            Artisan::call('optimize:clear');
-        })->afterResponse();
+        Cache::forget('new_arrival_products');
+        Cache::forget('todays_deal_products');
+        Cache::forget('app.todays_deal');
+        Cache::forget('app.todays_deal_v2');
+        Cache::forget('app.best_selling_products');
+        Cache::forget('app.best_selling_products_v2');
+        Cache::forget('all_products');
 
         CacheProducts::dispatch()->onQueue('high');
 
@@ -1113,22 +1115,19 @@ class ProductController extends Controller
 
         flash(('Product has been updated successfully'))->success();
 
+        Cache::forget('new_arrival_products');
+        Cache::forget('todays_deal_products');
+        Cache::forget('app.todays_deal');
+        Cache::forget('app.todays_deal_v2');
+        Cache::forget('app.best_selling_products');
+        Cache::forget('app.best_selling_products_v2');
+        Cache::forget("uni_get_the_id_{$product->id}");
+        Cache::forget("uni_get_the_id_by_slug_{$product->id}");
+        Cache::forget('all_products');
+
         // This will purge the cache of the product from Cloudflare
         PurgeCloudflareCache::dispatch($old_slug)->onQueue('high');
         CacheProducts::dispatch()->onQueue('high');
-
-        dispatch(function () {
-            Artisan::call('optimize:clear');
-        })->afterResponse();
-
-
-
-        // $cachedProductsFilePath = storage_path('app/public/products/get_cached_products.json');
-        // if (file_exists($cachedProductsFilePath)) {
-        //     $items = Product::with('stocks', 'productprices', 'flash_deal_product.flash_deals', 'customFieldsData.productCustomField','customFieldsData.metaObject.items')->where('published', 1)->where('approved', '1')->where('auction_product', 0)->get();
-        //     $jsonData = $items->toJson();
-        //     file_put_contents($cachedProductsFilePath, $jsonData);
-        // }
 
         return back();
     }
@@ -1245,9 +1244,7 @@ class ProductController extends Controller
 
         flash(('Product has been updated successfully'))->success();
 
-        dispatch(function () {
-            Artisan::call('optimize:clear');
-        })->afterResponse();
+        Cache::forget('all_products');
 
         CacheProducts::dispatch()->onQueue('high');
 
@@ -1291,9 +1288,15 @@ class ProductController extends Controller
             DB::commit();
             flash(('Product has been deleted successfully'))->success();
 
-        dispatch(function () {
-            Artisan::call('optimize:clear');
-        })->afterResponse();
+            Cache::forget('new_arrival_products');
+            Cache::forget('todays_deal_products');
+            Cache::forget('app.todays_deal');
+            Cache::forget('app.todays_deal_v2');
+            Cache::forget('app.best_selling_products');
+            Cache::forget('app.best_selling_products_v2');
+            Cache::forget("uni_get_the_id_{$product->id}");
+            Cache::forget("uni_get_the_id_by_slug_{$product->id}");
+            Cache::forget('all_products');
 
             CacheProducts::dispatch()->onQueue('high');
             return back();
@@ -1396,6 +1399,8 @@ class ProductController extends Controller
         $product->todays_deal = $request->status;
         $product->save();
         Cache::forget('todays_deal_products');
+        Cache::forget('app.todays_deal');
+        Cache::forget('app.todays_deal_v2');
 
         CacheProducts::dispatch()->onQueue('high');
 
@@ -1422,6 +1427,9 @@ class ProductController extends Controller
 
         $product->save();
 
+        Cache::forget('new_arrival_products');
+        Cache::forget('all_products');
+
         CacheProducts::dispatch()->onQueue('high');
 
         // $cachedProductsFilePath = storage_path('app/public/products/get_cached_products.json');
@@ -1447,6 +1455,9 @@ class ProductController extends Controller
 
         $product->save();
 
+        Cache::forget('new_arrival_products');
+        Cache::forget('all_products');
+
         CacheProducts::dispatch()->onQueue('high');
 
         // $cachedProductsFilePath = storage_path('app/public/products/get_cached_products.json');
@@ -1463,9 +1474,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($request->id);
         $product->featured = $request->status;
         if($product->save()){
-        dispatch(function () {
-            Artisan::call('optimize:clear');
-        })->afterResponse();
+            Cache::forget('all_products');
 
             CacheProducts::dispatch()->onQueue('high');
 
@@ -1485,9 +1494,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($request->id);
         $product->subscription = $request->status;
         if($product->save()){
-            dispatch(function () {
-                Artisan::call('optimize:clear');
-            })->afterResponse();
+            Cache::forget('all_products');
 
             CacheProducts::dispatch()->onQueue('high');
 
@@ -1507,9 +1514,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($request->id);
         $product->subscription = $request->status;
         if($product->save()){
-            dispatch(function () {
-                Artisan::call('optimize:clear');
-            })->afterResponse();
+            Cache::forget('all_products');
             return 1;
         }
         return 0;

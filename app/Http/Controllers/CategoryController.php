@@ -123,7 +123,7 @@ class CategoryController extends Controller
             file_put_contents($categoryFilePath, $jsonRowData);
         }
 
-        Cache::flush();
+        Cache::forget('featured_categories');
         Cache::forget('app.featured_categories_10');
         Cache::forget('app.featured_categories_');
         Cache::forget('app.home_categories');
@@ -132,7 +132,13 @@ class CategoryController extends Controller
         Cache::forget('firstLevelCat');
         for ($i = 0; $i <= 10; $i++) {
             Cache::forget("app.categories-$i");
+            Cache::forget("app.categories_v2_$i");
         }
+        Cache::forget('app.featured_categories_v2');
+        Cache::forget('app.home_categories_v2');
+        Cache::forget('app.top_categories_v2');
+        Cache::forget('firstLevelCat_v2');
+        Cache::forget('new_arrival_products');
 
         flash(('Category has been inserted successfully'))->success();
         return redirect()->route('categories.index');
@@ -264,7 +270,7 @@ class CategoryController extends Controller
         $category_translation->name = $request->name;
         $category_translation->save();
 
-        Cache::flush();
+        Cache::forget('featured_categories');
         Cache::forget('app.featured_categories_10');
         Cache::forget('app.featured_categories_');
         Cache::forget('app.home_categories');
@@ -273,7 +279,13 @@ class CategoryController extends Controller
         Cache::forget('firstLevelCat');
         for ($i = 0; $i <= 10; $i++) {
             Cache::forget("app.categories-$i");
+            Cache::forget("app.categories_v2_$i");
         }
+        Cache::forget('app.featured_categories_v2');
+        Cache::forget('app.home_categories_v2');
+        Cache::forget('app.top_categories_v2');
+        Cache::forget('firstLevelCat_v2');
+        Cache::forget('new_arrival_products');
 
         $categoryFilePath = storage_path('app/public/categories/category.json');
         if (!file_exists($categoryFilePath) || file_exists($categoryFilePath)) {
@@ -321,7 +333,13 @@ class CategoryController extends Controller
         Cache::forget('firstLevelCat');
         for ($i = 0; $i <= 10; $i++) {
             Cache::forget("app.categories-$i");
+            Cache::forget("app.categories_v2_$i");
         }
+        Cache::forget('app.featured_categories_v2');
+        Cache::forget('app.home_categories_v2');
+        Cache::forget('app.top_categories_v2');
+        Cache::forget('firstLevelCat_v2');
+        Cache::forget('new_arrival_products');
 
         $categoryFilePath = storage_path('app/public/categories/category.json');
         if (!file_exists($categoryFilePath) || file_exists($categoryFilePath)) {
@@ -332,8 +350,6 @@ class CategoryController extends Controller
             }
             file_put_contents($categoryFilePath, $jsonRowData);
         }
-
-        Cache::flush();
 
         flash(('Category has been deleted successfully'))->success();
         return redirect()->route('categories.index');
@@ -350,6 +366,10 @@ class CategoryController extends Controller
         Cache::forget('app.home_categories');
         Cache::forget('app.top_categories');
         Cache::forget('firstLevelCat');
+        Cache::forget('app.featured_categories_v2');
+        Cache::forget('app.home_categories_v2');
+        Cache::forget('app.top_categories_v2');
+        Cache::forget('firstLevelCat_v2');
         return 1;
     }
 
@@ -408,7 +428,6 @@ class CategoryController extends Controller
                 $catcontent->save();
             }
         }
-        Cache::flush();
         Cache::forget('app.featured_categories_10');
         Cache::forget('app.featured_categories_');
         Cache::forget('app.home_categories');
@@ -417,7 +436,13 @@ class CategoryController extends Controller
         Cache::forget('firstLevelCat');
         for ($i = 0; $i <= 10; $i++) {
             Cache::forget("app.categories-$i");
+            Cache::forget("app.categories_v2_$i");
         }
+        Cache::forget('app.featured_categories_v2');
+        Cache::forget('app.home_categories_v2');
+        Cache::forget('app.top_categories_v2');
+        Cache::forget('firstLevelCat_v2');
+        Cache::forget('new_arrival_products');
 
         flash(("Settings updated successfully"))->success();
         return back();

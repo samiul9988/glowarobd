@@ -94,14 +94,26 @@ class Brand extends Model
 
         static::created(function ($brand) {
             Cache::forget('filter_brands');
+            Cache::forget('app.filter_brands');
+            Cache::forget('app.filter_brands_v2');
+            Cache::forget('app.top_brands');
+            Cache::forget('app.top_brands_v2');
         });
 
         static::updated(function ($brand) {
             Cache::forget('filter_brands');
+            Cache::forget('app.filter_brands');
+            Cache::forget('app.filter_brands_v2');
+            Cache::forget('app.top_brands');
+            Cache::forget('app.top_brands_v2');
         });
 
         static::deleting(function ($brand) {
             Cache::forget('filter_brands');
+            Cache::forget('app.filter_brands');
+            Cache::forget('app.filter_brands_v2');
+            Cache::forget('app.top_brands');
+            Cache::forget('app.top_brands_v2');
         });
     }
 

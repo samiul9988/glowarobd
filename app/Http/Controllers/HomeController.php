@@ -36,14 +36,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $new_arrival_products = Cache::rememberForever('new_arrival_products', function () {
+        $new_arrival_products = Cache::remember('new_arrival_products', now()->addHour(), function () {
             return filter_products(Product::with('thumbnail_image', 'stocks', 'productprices')->availableInStock()->where('published', 1)->latest())->take(6)->get();
         });
-        $featured_categories = Cache::rememberForever('featured_categories', function () {
+        $featured_categories = Cache::remember('featured_categories', now()->addHour(), function () {
             return Category::where('featured', 1)->orderBy('order_level')->get();
         });
 
-        $todays_deal_products = Cache::rememberForever('todays_deal_products', function () {
+        $todays_deal_products = Cache::remember('todays_deal_products', now()->addHour(), function () {
             return filter_products(Product::with('thumbnail_image', 'stocks', 'productprices')->availableInStock()->where('published', 1)->where('todays_deal', '1'))->get();
         });
 

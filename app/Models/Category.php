@@ -138,14 +138,20 @@ class Category extends Model
 
         static::created(function ($category) {
             Cache::forget('filter_categories');
+            Cache::forget('app.filter_categories');
+            Cache::forget('app.filter_categories_v2');
         });
 
         static::updated(function ($category) {
             Cache::forget('filter_categories');
+            Cache::forget('app.filter_categories');
+            Cache::forget('app.filter_categories_v2');
         });
 
         static::deleting(function ($category) {
             Cache::forget('filter_categories');
+            Cache::forget('app.filter_categories');
+            Cache::forget('app.filter_categories_v2');
         });
     }
 

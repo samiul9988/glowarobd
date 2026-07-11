@@ -71,7 +71,12 @@ class BrandController extends Controller
         $brand_translation->name = $request->name;
         $brand_translation->save();
 
-        Cache::flush();
+        Cache::forget('app.filter_brands');
+        Cache::forget('app.filter_brands_v2');
+        Cache::forget('app.top_brands');
+        Cache::forget('app.top_brands_v2');
+        Cache::forget('all_brands');
+        Cache::forget('filter_brands');
         flash(('Brand has been inserted successfully'))->success();
         return redirect()->route('brands.index');
     }
@@ -145,7 +150,12 @@ class BrandController extends Controller
         $brand_translation->name = $request->name;
         $brand_translation->save();
 
-        Cache::flush();
+        Cache::forget('app.filter_brands');
+        Cache::forget('app.filter_brands_v2');
+        Cache::forget('app.top_brands');
+        Cache::forget('app.top_brands_v2');
+        Cache::forget('all_brands');
+        Cache::forget('filter_brands');
         flash(('Brand has been updated successfully'))->success();
         return back();
 
@@ -167,7 +177,12 @@ class BrandController extends Controller
         remove_rewrite_url('brand/'.$brand->slug);
         Brand::destroy($id);
 
-        Cache::flush();
+        Cache::forget('app.filter_brands');
+        Cache::forget('app.filter_brands_v2');
+        Cache::forget('app.top_brands');
+        Cache::forget('app.top_brands_v2');
+        Cache::forget('all_brands');
+        Cache::forget('filter_brands');
         flash(('Brand has been deleted successfully'))->success();
         return redirect()->route('brands.index');
 
