@@ -36,7 +36,7 @@ interface Props {
   };
 }
 
-const STORAGE_KEY = "eMart_lastActiveCategory";
+const STORAGE_KEY = "Glowaro_lastActiveCategory";
 const FALLBACK_IMAGE = "/images/placeholder.png";
 
 const MobileMenu = ({ logo, categories, appLinks }: Props) => {
@@ -97,9 +97,9 @@ const MobileMenu = ({ logo, categories, appLinks }: Props) => {
         <SheetTitle hidden>Dashboard Menu</SheetTitle>
 
         <div className="flex items-center justify-between pb-4">
-          {/* eMart logo */}
+          {/* Glowaro logo */}
           <Link href={"/"} onClick={() => setIsOpen(false)}>
-            <Image src={logo} alt="eMart Logo" height={40} width={136} />
+            <Image src={logo} alt="Glowaro Logo" height={40} width={136} />
           </Link>
 
           {/* Close button */}

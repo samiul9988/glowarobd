@@ -29,7 +29,7 @@ export const useOrderStore = create<OrderState>()(
       clearOrders: () => set({ orders: [] }),
     }),
     {
-      name: "eMart_OrderStore",
+      name: "glowaro_OrderStore",
     },
   ),
 );

@@ -26,7 +26,7 @@ const SupportStickyButton = () => {
       label: "Email",
       icon: <EmainIcon />,
       color: "bg-site-primary",
-      link: "mailto:info@emartwayskincare.com.bd",
+      link: "mailto:info@glowaro.com",
     },
     {
       id: 3,

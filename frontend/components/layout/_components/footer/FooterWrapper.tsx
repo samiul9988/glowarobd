@@ -416,7 +416,7 @@ const FooterWrapper = ({
       {/* <div className="absolute bottom-0 left-0 h-[100px] w-[200px] translate-y-5 transform md:h-[150px] md:w-[280px] lg:left-12 lg:block lg:h-[200px] lg:w-[450px]">
         <Image
           src="/images/footer/footer-product-group-2.png"
-          alt="emartway-products"
+          alt="glowaro-products"
           fill
         />
       </div>
@@ -424,7 +424,7 @@ const FooterWrapper = ({
       <div className="absolute right-0 bottom-0 h-[100px] w-[200px] translate-y-5 transform md:h-[150px] md:w-[280px] lg:right-12 lg:block lg:h-[200px] lg:w-[450px]">
         <Image
           src="/images/footer/footer-product-group-1.png"
-          alt="emartway-products"
+          alt="glowaro-products"
           fill
         />
       </div> */}
@@ -433,7 +433,7 @@ const FooterWrapper = ({
       {/* <div className="absolute right-0 bottom-0 translate-x-[50px] translate-y-[50px] transform lg:hidden">
         <Image
           src="/images/footer/footer-product-1.png"
-          alt="emartway"
+          alt="glowaro"
           height={0}
           width={110}
           priority
@@ -443,7 +443,7 @@ const FooterWrapper = ({
       <div className="absolute bottom-0 left-0 -translate-x-[50px] translate-y-[50px] transform lg:hidden">
         <Image
           src="/images/footer/footer-product-2.png"
-          alt="emartway"
+          alt="glowaro"
           height={0}
           width={100}
           priority
@@ -457,7 +457,7 @@ const FooterWrapper = ({
       >
         <Image
           src="/images/footer/footer-product-1.png"
-          alt="emartway"
+          alt="glowaro"
           height={0}
           width={250}
           priority
@@ -470,7 +470,7 @@ const FooterWrapper = ({
       >
         <Image
           src="/images/footer/footer-product-2.png"
-          alt="emartway"
+          alt="glowaro"
           height={0}
           width={170}
           priority
@@ -480,7 +480,7 @@ const FooterWrapper = ({
       {/* Footer shadow */}
       {/* <Image
         src="/images/footer/footer-shadow.png"
-        alt="emartway"
+        alt="glowaro"
         width={0}
         height={0}
         sizes="100vw"

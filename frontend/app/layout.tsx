@@ -108,10 +108,10 @@ export async function generateMetadata() {
     "Glowaro Skincare Limited | We Care About Your Skin";
   const metaDescription =
     settings.find((item) => item.type === "meta_description")?.value ||
-    "Glowaro SKINCARE is trusted & Authentic Cosmetics Company with Best Price. Next Day Delivery. Shop the latest top brands like Somebymi, CeraVe, The Ordinary, Bioderma, Purito, Cosrx, Nature Republic, Innisfree, iUNIK, The Dermalix, Neogen etc emart way Glowaroemartwayskincare";
+    "Glowaro SKINCARE is trusted & Authentic Cosmetics Company with Best Price. Next Day Delivery. Shop the latest top brands like Somebymi, CeraVe, The Ordinary, Bioderma, Purito, Cosrx, Nature Republic, Innisfree, iUNIK, The Dermalix, Neogen etc glowaro Glowaroglowaro";
   const metaKeywords =
     settings.find((item) => item.type === "meta_keywords")?.value ||
-    "emart way,glowaro skincare,emart way skincare,";
+    "glowaro,glowaro skincare,glowaro skincare,";
   const metaImage =
     settings.find((item) => item.type === "meta_image")?.value || defaultImage;
   return {
@@ -122,7 +122,7 @@ export async function generateMetadata() {
       ["fb:app_id"]: pixelAnalyticsId,
     },
     siteName: siteTitle,
-    metadataBase: new URL("https://emartwayskincare.com.bd"),
+    metadataBase: new URL("https://glowaro.com"),
     openGraph: {
       title: metaTitle,
       description: metaDescription,
@@ -139,19 +139,19 @@ export async function generateMetadata() {
     },
     // icons: {
     //   icon: [
-    //     { url: "/images/emart-favicon.png" },
+    //     { url: "/images/glowaro-favicon.png" },
     //     {
-    //       url: "/images/emart-favicon.png",
+    //       url: "/images/glowaro-favicon.png",
     //       sizes: "32x32",
     //       type: "image/png",
     //     },
     //     {
-    //       url: "/images/emart-favicon.png",
+    //       url: "/images/glowaro-favicon.png",
     //       sizes: "64x64",
     //       type: "image/png",
     //     },
     //   ],
-    //   apple: [{ url: "/images/emart-favicon.png" }],
+    //   apple: [{ url: "/images/glowaro-favicon.png" }],
     // },
   };
 }

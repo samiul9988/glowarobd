@@ -12,8 +12,8 @@ export const mainJsonLd = {
       description:
         "GlowaroSkincare is a trusted beauty and skincare store offering premium products in Bangladesh.",
       sameAs: [
-        "https://www.facebook.com/emartwayskincare",
-        "https://www.instagram.com/emartwayskincare/",
+        "https://www.facebook.com/glowaro",
+        "https://www.instagram.com/glowaro/",
         "https://www.youtube.com/channel/UCQPyA3Vf20QLK8yIF-62IOA",
       ],
     },

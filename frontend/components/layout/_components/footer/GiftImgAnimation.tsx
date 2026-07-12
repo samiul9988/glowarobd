@@ -27,7 +27,7 @@ const GiftImgAnimation = () => {
       >
         <Image
           src="/images/footer/footer-gift.png"
-          alt="emartway-products"
+          alt="glowaro-products"
           fill
         />
       </motion.div>

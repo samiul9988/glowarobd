@@ -12,26 +12,26 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "staging.emartwayskincare.com.bd",
+        hostname: "staging.glowaro.com",
         pathname: "**",
       },
       {
         protocol: "https",
-        hostname: "stg.emartwayskincare.com.bd",
+        hostname: "stg.glowaro.com",
         pathname: "**",
       },
       {
         protocol: "https",
-        hostname: "emart-cdn.s3.ap-south-1.amazonaws.com",
+        hostname: "glowaro-cdn.s3.ap-south-1.amazonaws.com",
         pathname: "**",
       },
       {
         protocol: "https",
-        hostname: "emart-cdn.s3.ap-south-1.amazonaws.com",
+        hostname: "glowaro-cdn.s3.ap-south-1.amazonaws.com",
       },
       {
         protocol: "https",
-        hostname: "emart-cdn.s3.ap-south-1.amazonaws.com",
+        hostname: "glowaro-cdn.s3.ap-south-1.amazonaws.com",
       },
       {
         protocol: "https",

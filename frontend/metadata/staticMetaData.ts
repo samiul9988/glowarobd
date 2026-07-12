@@ -4,17 +4,17 @@ export const metaData = {
   home: {
     title: `Home | ${siteTitle}`,
     description:
-      "Discover trendy and stylish products for every occasion. Browse our latest collections with quality and comfort in mind. Shop now and elevate your experience with eMart.",
+      "Discover trendy and stylish products for every occasion. Browse our latest collections with quality and comfort in mind. Shop now and elevate your experience with Glowaro.",
   },
   brands: {
     title: `Brands | ${siteTitle}`,
     description:
-      "Explore all your favorite brands at eMart. Discover products from top brands, compare options, and shop with confidence.",
+      "Explore all your favorite brands at Glowaro. Discover products from top brands, compare options, and shop with confidence.",
   },
   allCategories: {
     title: `All Categories | ${siteTitle}`,
     description:
-      "Explore all product categories at eMart. Discover a wide range of products, find what you need, and shop easily with confidence.",
+      "Explore all product categories at Glowaro. Discover a wide range of products, find what you need, and shop easily with confidence.",
   },
   cart: {
     title: `Cart | ${siteTitle}`,
@@ -30,12 +30,12 @@ export const metaData = {
   about: {
     title: `About | ${siteTitle}`,
     description:
-      "Learn more about eMart and our commitment to quality and customer satisfaction.",
+      "Learn more about Glowaro and our commitment to quality and customer satisfaction.",
   },
   contact: {
     title: `Contact | ${siteTitle}`,
     description:
-      "Get in touch with eMart support for inquiries, assistance, and feedback.",
+      "Get in touch with Glowaro support for inquiries, assistance, and feedback.",
   },
   faq: {
     title: `FAQ | ${siteTitle}`,
@@ -70,7 +70,7 @@ export const metaData = {
   flashDeals: {
     title: `Flash Deals | ${siteTitle}`,
     description:
-      "Grab exclusive flash deals at eMart. Find limited-time offers, discounts, and hot products before they run out.",
+      "Grab exclusive flash deals at Glowaro. Find limited-time offers, discounts, and hot products before they run out.",
   },
   wishlist: {
     title: `Wishlist | ${siteTitle}`,
@@ -79,11 +79,11 @@ export const metaData = {
   blog: {
     title: `Blog | ${siteTitle}`,
     description:
-      "Read our latest articles, updates, and product insights on the eMart blog.",
+      "Read our latest articles, updates, and product insights on the Glowaro blog.",
   },
   search: {
     title: `Search | ${siteTitle}`,
-    description: "Search for products and find exactly what you need at eMart.",
+    description: "Search for products and find exactly what you need at Glowaro.",
   },
   notFound: {
     title: `Page Not Found | ${siteTitle}`,

@@ -12,8 +12,8 @@ export default function ProductInfo({ product }: DetailsProps) {
 
 //   // all possible links
 //   const appLinks = {
-//     android: "https://play.google.com/store/apps/details?id=bd.com.emartway",
-//     ios: "https://apps.apple.com/us/app/emartway-skincare/id1619605100",
+//     android: "https://play.google.com/store/apps/details?id=bd.com.glowaro",
+//     ios: "https://apps.apple.com/us/app/glowaro-skincare/id1619605100",
 //   };
 
   // determine which link to show based on device type

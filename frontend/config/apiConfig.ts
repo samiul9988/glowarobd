@@ -11,7 +11,7 @@ export const apiBaseUrlV2 =
 
 export const apiLiveBaseUrl =
   process.env.NEXT_PUBLIC_API_BASE_URL_LIVE_TEST ||
-  "https://api.emartwayskincare.com.bd/api/v3";
+  "https://api.glowaro.com/api/v3";
 
 // ============================
 // Image URLs
@@ -38,7 +38,7 @@ export const useAiApi =
 // Public Site URLs
 // ============================
 export const publicBaseUrl =
-  process.env.NEXT_PUBLIC_BASE_URL || "https://emartwayskincare.com.bd";
+  process.env.NEXT_PUBLIC_BASE_URL || "https://glowaro.com";
 
 export const localhostUrl = "http://localhost:3000";
 
@@ -46,10 +46,10 @@ export const localhostUrl = "http://localhost:3000";
 // Site Metadata
 // ============================
 export const siteName =
-  process.env.NEXT_PUBLIC_SITE_NAME || "Emartwayskincareltd";
+  process.env.NEXT_PUBLIC_SITE_NAME || "Glowaro";
 
 export const siteTitle =
-  process.env.NEXT_PUBLIC_SITE_TITLE || "Emartways Skincare Bangladesh";
+  process.env.NEXT_PUBLIC_SITE_TITLE || "Glowaro - Online Beauty Store";
 
 // ============================
 // Security & Analytics

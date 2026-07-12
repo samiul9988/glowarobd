@@ -32,7 +32,7 @@ export async function proxy(request: NextRequest) {
 
   // 👇 Check if someone typed /amdin (mistyped)
   if (pathname === "/admin") {
-    return NextResponse.rewrite("https://api.emartwayskincare.com.bd");
+    return NextResponse.rewrite("https://api.glowaro.com");
   }
 
   const isProtected = protectedRoutes.some((path) => pathname.startsWith(path));

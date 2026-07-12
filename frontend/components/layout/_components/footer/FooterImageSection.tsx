@@ -82,7 +82,7 @@ useEffect(() => {
         >
           <Image
             src="/images/footer-second.png"
-            alt="emartway"
+            alt="glowaro"
             height={600}
             width={1200}
             priority

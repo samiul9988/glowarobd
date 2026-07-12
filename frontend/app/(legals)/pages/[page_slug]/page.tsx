@@ -77,7 +77,7 @@ export default async function LegalPage({ params }: Props) {
             ></iframe>
           </div> */}
 
-            {/* About eMart */}
+            {/* About Glowaro */}
             <div className="flex flex-col items-center gap-10 md:flex-row">
               {/* Left */}
               <div className="relative aspect-[288/180] w-full shrink-0 overflow-hidden rounded-[10px] md:max-w-[288px]">
@@ -182,11 +182,11 @@ export default async function LegalPage({ params }: Props) {
                     Managing Director & Founder
                   </span>
                   <a
-                    href="mailto:aumee@emartwayskincare.com.bd"
+                    href="mailto:aumee@glowaro.com"
                     target="_blank"
                     className="text-site-gray-700 text-xs"
                   >
-                    aumee@emartwayskincare.com.bd
+                    aumee@glowaro.com
                   </a>
                 </div>
               </div>
@@ -210,11 +210,11 @@ export default async function LegalPage({ params }: Props) {
                     Co Founder
                   </span>
                   <a
-                    href="mailto:bablu@emartwayskincare.com.bd"
+                    href="mailto:bablu@glowaro.com"
                     target="_blank"
                     className="text-site-gray-700 text-xs"
                   >
-                    bablu@emartwayskincare.com.bd
+                    bablu@glowaro.com
                   </a>
                 </div>
               </div>
@@ -238,11 +238,11 @@ export default async function LegalPage({ params }: Props) {
                     Co Founder
                   </span>
                   <a
-                    href="mailto:rasel@emartwayskincare.com.bd"
+                    href="mailto:rasel@glowaro.com"
                     target="_blank"
                     className="text-site-gray-700 text-xs"
                   >
-                    rasel@emartwayskincare.com.bd
+                    rasel@glowaro.com
                   </a>
                 </div>
               </div>
@@ -261,7 +261,7 @@ export default async function LegalPage({ params }: Props) {
             </p>
             <div className="flex items-center gap-3">
               <a
-                href="https://www.facebook.com/emartwayskincare"
+                href="https://www.facebook.com/glowaro"
                 target="_blank"
                 className="hover:bg-site-primary/20 grid h-[38px] w-[38px] place-content-center rounded-full bg-white transition-colors"
               >
@@ -285,7 +285,7 @@ export default async function LegalPage({ params }: Props) {
               </a>
 
               <a
-                href="https://www.instagram.com/emartwayskincare"
+                href="https://www.instagram.com/glowaro"
                 target="_blank"
                 className="hover:bg-site-primary/20 grid h-[38px] w-[38px] place-content-center rounded-full bg-white transition-colors"
               >
@@ -388,7 +388,7 @@ export async function generateMetadata({ params }: Props) {
 
   const metaDescription = pageData?.meta_description
     ? `${pageData.meta_description} | ${pageData?.title || ""}`
-    : "GlowaroSKINCARE is trusted & Authentic Cosmetics Company with Best Price. Next Day Delivery. Shop the latest top brands like Somebymi, CeraVe, The Ordinary, Bioderma, Purito, Cosrx, Nature Republic, Innisfree, iUNIK, The Dermalix, Neogen etc emart way Glowaroemartwayskincare";
+    : "GlowaroSKINCARE is trusted & Authentic Cosmetics Company with Best Price. Next Day Delivery. Shop the latest top brands like Somebymi, CeraVe, The Ordinary, Bioderma, Purito, Cosrx, Nature Republic, Innisfree, iUNIK, The Dermalix, Neogen etc glowaro Glowaroglowaro";
 
   return {
     title: metaTitle,

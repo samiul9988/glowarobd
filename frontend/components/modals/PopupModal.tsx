@@ -40,7 +40,7 @@ const PopupModal = () => {
     data?.find((item) => item.type === "app_popup_image")?.image_url ?? "";
 
   useEffect(() => {
-    const lastClosed = localStorage.getItem("eMart_popupClosedAt");
+    const lastClosed = localStorage.getItem("Glowaro_popupClosedAt");
     const now = Date.now();
 
     // Show popup only if not closed within the last 24h
@@ -52,7 +52,7 @@ const PopupModal = () => {
 
   const handleOpenChange = (isOpen: boolean) => {
     if (!isOpen) {
-      localStorage.setItem("eMart_popupClosedAt", Date.now().toString());
+      localStorage.setItem("Glowaro_popupClosedAt", Date.now().toString());
     }
     setOpen(isOpen);
   };

@@ -1,6 +1,7 @@
-import { apiBaseUrl } from "@/config/apiConfig";
+import { apiBaseUrl, useAiApi } from "@/config/apiConfig";
 import { getServerSession } from "./getServerSession";
 import { getAccessToken } from "./getAccessToken";
+import { fetchFromAI } from "./aiAdapter";
 
 export type FetcherOptions = RequestInit & {
   baseUrl?: string;
@@ -11,12 +12,23 @@ export async function fetcher<T>(
   url: string,
   options: FetcherOptions = {},
 ): Promise<T | null> {
+  // ----- AI API Adapter -----
+  if (useAiApi) {
+    try {
+      const data = await fetchFromAI(url, options);
+      return data as T;
+    } catch {
+      return null;
+    }
+  }
+
+  // ----- Default API -----
   const { baseUrl, next, ...fetchOptions } = options;
 
   const userData = await getServerSession();
   const token = getAccessToken();
   const finalUrl = `${baseUrl ?? apiBaseUrl}${url}`;
-  // ---- Conditional header building ----
+
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
     source: "web",
@@ -30,7 +42,6 @@ export async function fetcher<T>(
     const res = await fetch(finalUrl, {
       ...fetchOptions,
       headers,
-      // Enable ISR-like caching for 1 hour
       next: next ?? { revalidate: 3600 },
     });
     const data = await res.json();

@@ -261,7 +261,7 @@ const MobileBottomNavigationSheet = () => {
                 </p>
                 
                 <MenuLink
-                  href="mailto:info@emartwayskincare.com.bd"
+                  href="mailto:info@glowaro.com"
                   icon={<DashboardSheetCallIcon />}
                   label="Email"
                 />
