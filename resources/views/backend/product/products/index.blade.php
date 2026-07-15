@@ -191,13 +191,13 @@
                         </td>
                         <td class="font-weight-bold">
                             <span class="d-block fs-11 text-muted">
-                                Created By: <strong>{{ $product->created_by ? $product->createdByUser->name : $product->user->name }}</strong>
+                                Created By: <strong>{{ $product->created_by ? $product->createdByUser?->name : $product->user?->name }}</strong>
                             </span>
                             <span class="d-block fs-10 text-success">
                                 Created At: {{ $product->created_at->diffForHumans() }}
                             </span>
                             <span class="d-block fs-11 text-muted">
-                                Updated By: <strong>{{ $product->updated_by ? $product->updatedByUser->name : $product->user->name }}</strong>
+                                Updated By: <strong>{{ $product->updated_by ? $product->updatedByUser?->name : $product->user?->name }}</strong>
                             </span>
                             <span class="d-block fs-10 text-primary">
                                 Last Update: {{ $product->updated_at->diffForHumans() }}

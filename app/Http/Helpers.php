@@ -2596,7 +2596,7 @@ if (! function_exists('getFileBaseURL')) {
         if (config('filesystems.default') == 's3') {
             return Storage::disk('s3')->url('');
         } else {
-            return config('app.url').'/';
+            return url('/') . '/';
         }
         // if (env('FILESYSTEM_DRIVER') == 's3') {
         //     return env('AWS_URL') . '/';

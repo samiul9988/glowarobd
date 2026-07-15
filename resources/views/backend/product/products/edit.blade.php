@@ -244,14 +244,14 @@
                                     <option
                                         value="{{ $color->code }}"
                                         data-content="<span><span class='size-15px d-inline-block mr-2 rounded border' style='background:{{ $color->code }}'></span><span>{{ $color->name }}</span></span>"
-                                        <?php if (in_array($color->code, json_decode($product->colors))) echo 'selected' ?>
+                                        <?php if (in_array($color->code, json_decode($product->colors ?? '[]'))) echo 'selected' ?>
                                         ></option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-lg-1">
                                 <label class="aiz-switch aiz-switch-success mb-0">
-                                    <input value="1" type="checkbox" name="colors_active" <?php if (count(json_decode($product->colors)) > 0) echo "checked"; ?> >
+                                    <input value="1" type="checkbox" name="colors_active" <?php if (count(json_decode($product->colors ?? '[]')) > 0) echo "checked"; ?> >
                                     <span></span>
                                 </label>
                             </div>
@@ -275,7 +275,7 @@
                             <br>
                         </div>
                         <div class="customer_choice_options" id="customer_choice_options">
-                            @foreach (json_decode($product->choice_options) as $key => $choice_option)
+                            @foreach (json_decode($product->choice_options) ?? [] as $key => $choice_option)
                             <div class="form-group row">
                                 <div class="col-lg-3">
                                     <input type="hidden" name="choice_no[]" value="{{ $choice_option->attribute_id }}">
@@ -1353,7 +1353,7 @@
     });
 
     $('#category_id').on('change', function() {
-        var product_choice_option = '{{count(json_decode($product->choice_options))}}';
+        var product_choice_option = '{{count(json_decode($product->choice_options ?? '[]'))}}';
         if(product_choice_option==0){
         var cat_attribute = $("#category_id option:selected").attr('data-catattribute');
         var cat_color = $("#category_id option:selected").attr('data-catcolor');

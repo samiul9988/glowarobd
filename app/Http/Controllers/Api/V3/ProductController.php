@@ -59,6 +59,8 @@ class ProductController extends Controller
 
         $product = Product::with([
             'stocks',
+            'user',
+            'user.shop',
             'customFieldsData.productCustomField',
             'customFieldsData.metaObject:id',
             'customFieldsData.metaObject.items',
@@ -167,7 +169,7 @@ class ProductController extends Controller
         // dd($category_ids);
 
         $products = Product::published()
-            ->with('productprices', 'flash_deal_product.flash_deals', 'brand', 'reviews')
+            ->with('thumbnail_image', 'stocks', 'productprices', 'flash_deal_product.flash_deals', 'brand', 'reviews')
             ->when(!$request->boolean('show_stock_out', true), function ($query) {
                 $query->availableInStock();
             })
