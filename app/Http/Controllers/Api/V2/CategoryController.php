@@ -15,21 +15,21 @@ class CategoryController extends Controller
         if(request()->has('parent_id') && is_numeric (request()->get('parent_id'))){
           $parent_id = request()->get('parent_id');
         }
-        return Cache::remember("app.categories_v2_$parent_id", 86400, function() use ($parent_id){
+        return Cache::remember("app.categories_v2_$parent_id", 300, function() use ($parent_id){
             return new CategoryCollection(Category::where('parent_id', $parent_id)->get());
         });
     }
 
     public function featured()
     {
-        return Cache::remember('app.featured_categories_v2', 86400, function(){
+        return Cache::remember('app.featured_categories_v2', 300, function(){
             return new CategoryCollection(Category::where('featured', 1)->get());
         });
     }
 
     public function home()
     {
-        return Cache::remember('app.home_categories_v2', 86400, function(){
+        return Cache::remember('app.home_categories_v2', 300, function(){
             $cat = json_decode(get_setting('home_categories'), true);
             $catArray = [];
             foreach($cat as $key => $data){
@@ -41,7 +41,7 @@ class CategoryController extends Controller
 
     public function top()
     {   
-        return Cache::remember('app.top_categories_v2', 86400, function(){
+        return Cache::remember('app.top_categories_v2', 300, function(){
             $cat = json_decode(get_setting('home_categories'), true);
             $catArray = [];
             foreach($cat as $key => $data){
@@ -65,7 +65,7 @@ class CategoryController extends Controller
 
     public function left_category()
     {
-        $firstLevelCat = cache()->remember('firstLevelCat_v2', 86400, function () {
+        $firstLevelCat = cache()->remember('firstLevelCat_v2', 300, function () {
             return \App\Models\Category::where('level', 0)->orderBy('order_level', 'desc')->get();
         });
         $p_category = [];

@@ -23,7 +23,7 @@ class CategoryController extends Controller
 
         // Cache::forget("app.categories-$parent_id");
 
-        return Cache::remember("app.categories-$parent_id", 86400, function () use ($parent_id) {
+        return Cache::remember("app.categories-$parent_id", 300, function () use ($parent_id) {
             return new CategoryCollection(Category::with('subcategories.childrenCategories', 'content')
             ->where('parent_id', $parent_id)
             ->orderBy('order_level', 'asc')
@@ -34,7 +34,7 @@ class CategoryController extends Controller
     public function featured(Request $request)
     {
         $limit = $request->limit ?? null;
-        return Cache::remember('app.featured_categories_'.$limit, 86400, function () use($limit) {
+        return Cache::remember('app.featured_categories_'.$limit, 300, function () use($limit) {
             $query = Category::with('subcategories.childrenCategories', 'content')->where('featured', 1);
             if ($limit) {
                 $query->limit($limit);
@@ -49,7 +49,7 @@ class CategoryController extends Controller
         $home_categories = array_map(function ($item) {
             return (int)$item['cid'];
         }, $categories);
-        return Cache::remember('app.home_categories', 86400, function () use ($home_categories) {
+        return Cache::remember('app.home_categories', 300, function () use ($home_categories) {
             return new CategoryCollection(Category::with('subcategories.childrenCategories', 'content')->whereIn('id', array_filter($home_categories ?? []))->get());
         });
     }
@@ -60,7 +60,7 @@ class CategoryController extends Controller
         $top_categories = array_map(function ($item) {
             return (int)$item['cid'];
         }, $home_categories);
-        return Cache::remember('app.top_categories', 86400, function () use ($top_categories) {
+        return Cache::remember('app.top_categories', 300, function () use ($top_categories) {
             return new CategoryCollection(Category::with('subcategories.childrenCategories', 'content')->whereIn('id', array_filter($top_categories ?? []))->limit(20)->get());
         });
     }

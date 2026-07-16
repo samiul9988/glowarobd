@@ -2506,7 +2506,7 @@ if (! function_exists('app_timezone')) {
 if (! function_exists('api_asset')) {
     function api_asset($id)
     {
-        $asset = Cache::remember('api_uploded_file_'.$id, 86400, function () use ($id) {
+        $asset = Cache::remember('api_uploded_file_'.$id, 300, function () use ($id) {
             return Upload::find($id);
         });
         if ($asset != null) {
@@ -2527,7 +2527,7 @@ if (! function_exists('uploaded_asset')) {
             return $uid;
         }
         if (! empty($id)) {
-            $asset = Cache::remember('uni_uploaded_file_'.$id, 86400, function () use ($id) {
+            $asset = Cache::remember('uni_uploaded_file_'.$id, 300, function () use ($id) {
                 return Upload::find($id);
             });
         } else {
