@@ -9,7 +9,7 @@ class SliderController extends Controller
 {
     public function index()
     {
-        return Cache::remember('app.home_slider_images_v3', 86400, function () {
+        return Cache::remember('app.home_slider_images_v3', 300, function () {
             $webImages =  json_decode(get_setting('home_slider_images'), true);
             $mobileImages =  json_decode(get_setting('home_slider_images_mobile'), true);
             $links =  json_decode(get_setting('home_slider_links'), true);
