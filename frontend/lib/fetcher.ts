@@ -42,7 +42,7 @@ export async function fetcher<T>(
     const res = await fetch(finalUrl, {
       ...fetchOptions,
       headers,
-      next: next ?? { revalidate: 3600 },
+      next: next ?? { revalidate: 300 },
     });
     const data = await res.json();
     return data as T;

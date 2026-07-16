@@ -6,7 +6,7 @@ export async function getAllBrands() {
   const data = await cacheableFetcher<BrandApiResponse<BrandItemResponse[]>>(
     "/brands?limit=50",
     {
-      revalidate: 3600,
+      revalidate: 300,
     },
   );
   return data || [];

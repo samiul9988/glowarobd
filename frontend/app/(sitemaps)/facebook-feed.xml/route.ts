@@ -19,7 +19,7 @@ export async function GET() {
     return new NextResponse(xml, {
       headers: {
         "Content-Type": "application/xml",
-        "Cache-Control": `public, s-maxage=${3600}, stale-while-revalidate=86400`,
+        "Cache-Control": `public, s-maxage=${300}, stale-while-revalidate=86400`,
       },
     });
   } catch (error) {

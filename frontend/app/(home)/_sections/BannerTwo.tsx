@@ -21,7 +21,7 @@ const BannerTwo = async () => {
   const res = await cacheableFetcher<ApiResponse>("/banners", {
     baseUrl:apiBaseUrlV2,
     next: {
-      revalidate: 3600,
+      revalidate: 300,
     },
   });
 if(res && res.banner2.data.length === 0){

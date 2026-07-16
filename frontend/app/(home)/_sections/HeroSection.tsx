@@ -18,7 +18,7 @@ const HeroSection = async () => {
   const res = await cacheableFetcher<ApiResponse>("/sliders", {
     baseUrl: apiBaseUrl,
     next: {
-      revalidate: 3600,
+      revalidate: 300,
     },
   });
 

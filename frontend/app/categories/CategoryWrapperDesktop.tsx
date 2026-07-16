@@ -28,7 +28,7 @@ const CategoryWrapperDesktop = async () => {
   const res = await cacheableFetcher<ApiResponseType<Categories[]>>(
     "/categories",
     {
-      revalidate: 3600,
+      revalidate: 300,
     },
   );
 

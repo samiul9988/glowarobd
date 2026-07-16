@@ -29,7 +29,7 @@ const SpecialOfferZoneSection = async () => {
         `/flash-deal-products/${deal.id}`,
         {
           baseUrl: apiBaseUrl,
-          revalidate: 3600, // Cache for 1 hour
+          revalidate: 300, // Cache for 1 hour
 
         },
       );

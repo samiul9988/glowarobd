@@ -99,6 +99,11 @@ class AizUploadController extends Controller
                 else{
                     $path = $request->file('aiz_file')->store('uploads/all', 'local');
                 }
+
+                if (!$path) {
+                    return response()->json(['error' => 'File upload failed. Directory may not be writable.'], 500);
+                }
+
                 // $path = $request->file('aiz_file')->store('uploads/all', 'local');
                 $size = $request->file('aiz_file')->getSize();
 
