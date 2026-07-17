@@ -1,10 +1,13 @@
 import React from "react";
-import { apiBaseUrl, publicBaseUrl, siteTitle } from "@/config/apiConfig";
+import { apiBaseUrl, imageBaseHostUrl, publicBaseUrl, siteTitle } from "@/config/apiConfig";
 import { fetcher } from "@/lib/fetcher";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { FaFacebook, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
 import PageHeader from "@/components/PageHeader";
+
+const BANNER_1 = "uploads/all/WPLAfa03W2yIZyseSaJTKJyf4dz3SmCvw85lHFTu.webp";
+const BANNER_2 = "uploads/all/dcA671Mx1vOUlXSHmhwPCCezr06HHNWJLe4L5qcK.webp";
 
 interface Props {
   params: Promise<{
@@ -82,8 +85,8 @@ export default async function LegalPage({ params }: Props) {
               {/* Left */}
               <div className="relative aspect-[288/180] w-full shrink-0 overflow-hidden rounded-[10px] md:max-w-[288px]">
                 <Image
-                  src="/images/legals/banner-1.png"
-                  alt="banner-1"
+                  src={imageBaseHostUrl + BANNER_1}
+                  alt="Glowaro Skincare Products"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 288px"
@@ -96,14 +99,47 @@ export default async function LegalPage({ params }: Props) {
                   Who We Are
                 </h4>
                 <p className="text-site-gray-700 text-sm leading-[22px]">
-                  At GlowaroSkincare, we believe skincare is more than just
-                  products — it's confidence, self-care, and feeling good in
-                  your own skin. Our mission is to bring high-quality, safe, and
-                  effective skincare products right to your doorstep. We're here
-                  to help you look good, feel good, and glow naturally.
+                  Glowaro is Bangladesh's most trusted destination for authentic
+                  Korean and global skincare. We bring you dermatologist-tested,
+                  result-driven products that target every skin concern — from
+                  stubborn acne and dark spots to uneven skin tone, open pores,
+                  melasma, and premature aging. Every product we stock is
+                  handpicked to deliver real, visible results for your unique
+                  skin journey.
                 </p>
               </div>
             </div>
+            <hr className="my-5 md:my-10" />
+
+            {/* Skin Concerns We Address */}
+            <h4 className="text-site-gray-900 mb-6 text-center text-[28px] font-bold">
+              Skin Concerns We Address
+            </h4>
+            <div className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-4">
+              {[
+                { label: "Acne & Blemishes", bg: "#FFE0E6" },
+                { label: "Dark Spots", bg: "#FFF3E0" },
+                { label: "Uneven Skin Tone", bg: "#F3E5F5" },
+                { label: "Melasma", bg: "#E8EAF6" },
+                { label: "Open Pores", bg: "#E0F2F1" },
+                { label: "Whiteheads", bg: "#FCE4EC" },
+                { label: "Blackheads", bg: "#ECEFF1" },
+                { label: "Wrinkles & Fine Lines", bg: "#FFF8E1" },
+                { label: "Dryness & Dehydration", bg: "#E1F5FE" },
+                { label: "Sun Damage", bg: "#FFF3E0" },
+                { label: "Hyperpigmentation", bg: "#F3E5F5" },
+                { label: "Soothing & Calming", bg: "#E8F5E9" },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="rounded-[10px] px-4 py-3 text-center text-sm font-medium text-gray-800"
+                  style={{ backgroundColor: item.bg }}
+                >
+                  {item.label}
+                </div>
+              ))}
+            </div>
+
             <hr className="my-5 md:my-10" />
             <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
               <div className="rounded-[10px] bg-[#FFE0E6] p-8 text-center">
@@ -111,7 +147,7 @@ export default async function LegalPage({ params }: Props) {
                   3K+
                 </span>
                 <span className="text-site-gray-700/80 block text-base">
-                  Stock Products
+                  Authentic Products
                 </span>
               </div>
               <div className="rounded-[10px] bg-[#e9e6e6] p-8 text-center">
@@ -127,7 +163,7 @@ export default async function LegalPage({ params }: Props) {
                   40+
                 </span>
                 <span className="text-site-gray-700/80 block text-base">
-                  Top Brands
+                  Global Brands
                 </span>
               </div>
             </div>
@@ -136,233 +172,61 @@ export default async function LegalPage({ params }: Props) {
               {/* Left */}
               <div className="space-y-3">
                 <h4 className="text-site-gray-900 text-[32px] font-bold">
-                  Our Story
+                  Our Promise
                 </h4>
                 <p className="text-site-gray-700 text-sm leading-[22px]">
-                  At GlowaroSkincare, we believe skincare is more than just
-                  products — it's confidence, self-care, and feeling good in
-                  your own skin. Our mission is to bring high-quality, safe, and
-                  effective skincare products right to your doorstep. We're here
-                  to help you look good, feel good, and glow naturally.
+                  Every product at Glowaro goes through rigorous quality checks
+                  before it reaches you. We partner directly with authorized
+                  distributors and brands to guarantee 100% authenticity. Whether
+                  you're fighting active acne, fading dark spots, minimizing open
+                  pores, or building an anti-aging routine — we have the right
+                  solution backed by science and real customer results. Your skin
+                  deserves nothing less than the best, and we're committed to
+                  delivering exactly that.
                 </p>
               </div>
               {/* Right */}
               <div className="relative aspect-[288/180] w-full shrink-0 overflow-hidden rounded-[10px] md:max-w-[288px]">
                 <Image
-                  src="/images/legals/banner-2.png"
-                  alt="banner-2"
+                  src={imageBaseHostUrl + BANNER_2}
+                  alt="Glowaro Quality Promise"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 288px"
                 />
               </div>
             </div>
-            {/* <hr className="my-5 md:my-10" />
-          <div className="space-y-9">
-            <h4 className="text-site-gray-900 text-[32px]">
-              Meet the Minds Behind Our Brand
+            <hr className="my-5 md:my-10" />
+
+            {/* Why Choose Us */}
+            <h4 className="text-site-gray-900 mb-6 text-center text-[28px] font-bold">
+              Why Choose Glowaro
             </h4>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-              <div className="flex flex-col items-center space-y-4 text-center">
-                <div className="relative aspect-[201/275] w-full max-w-[201px] overflow-hidden rounded-[10px]">
-                  <Image
-                    src="/images/legals/person-1.png"
-                    alt="Aehtesham Aumee"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 201px"
-                    priority
-                  />
-                </div>
-                <div className="text-center">
-                  <span className="text-site-gray-900 mb-1 text-[20px] font-semibold">
-                    Aehtesham Aumee
-                  </span>
-                  <span className="text-site-primary block text-xs">
-                    Managing Director & Founder
-                  </span>
-                  <a
-                    href="mailto:aumee@glowaro.com"
-                    target="_blank"
-                    className="text-site-gray-700 text-xs"
-                  >
-                    aumee@glowaro.com
-                  </a>
-                </div>
+              <div className="rounded-[10px] border border-gray-100 p-6 text-center">
+                <div className="text-site-primary mb-3 text-3xl font-bold">100%</div>
+                <h5 className="text-site-gray-900 mb-2 font-semibold">Authentic Products</h5>
+                <p className="text-site-gray-700 text-sm leading-[22px]">
+                  Every item is sourced directly from authorized distributors.
+                  No fakes, no compromises.
+                </p>
               </div>
-
-              <div className="flex flex-col items-center space-y-4 text-center">
-                <div className="relative aspect-[201/275] w-full max-w-[201px] overflow-hidden rounded-[10px]">
-                  <Image
-                    src="/images/legals/person-2.png"
-                    alt="Bablu Ahmed"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 201px"
-                    priority
-                  />
-                </div>
-                <div className="text-center">
-                  <span className="text-site-gray-900 mb-1 text-[20px] font-semibold">
-                    Bablu Ahmed
-                  </span>
-                  <span className="text-site-primary block text-xs">
-                    Co Founder
-                  </span>
-                  <a
-                    href="mailto:bablu@glowaro.com"
-                    target="_blank"
-                    className="text-site-gray-700 text-xs"
-                  >
-                    bablu@glowaro.com
-                  </a>
-                </div>
+              <div className="rounded-[10px] border border-gray-100 p-6 text-center">
+                <div className="text-site-primary mb-3 text-3xl font-bold">24H</div>
+                <h5 className="text-site-gray-900 mb-2 font-semibold">Fast Delivery</h5>
+                <p className="text-site-gray-700 text-sm leading-[22px]">
+                  Order today, glow tomorrow. We deliver across Bangladesh with
+                  lightning-fast shipping.
+                </p>
               </div>
-
-              <div className="flex flex-col items-center space-y-4 text-center">
-                <div className="relative aspect-[201/275] w-full max-w-[201px] overflow-hidden rounded-[10px]">
-                  <Image
-                    src="/images/legals/person-3.png"
-                    alt="person-3"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 201px"
-                    priority
-                  />
-                </div>
-                <div className="text-center">
-                  <span className="text-site-gray-900 mb-1 text-[20px] font-semibold">
-                    Sheikh Rasel
-                  </span>
-                  <span className="text-site-primary block text-xs">
-                    Co Founder
-                  </span>
-                  <a
-                    href="mailto:rasel@glowaro.com"
-                    target="_blank"
-                    className="text-site-gray-700 text-xs"
-                  >
-                    rasel@glowaro.com
-                  </a>
-                </div>
+              <div className="rounded-[10px] border border-gray-100 p-6 text-center">
+                <div className="text-site-primary mb-3 text-3xl font-bold">24/7</div>
+                <h5 className="text-site-gray-900 mb-2 font-semibold">Expert Support</h5>
+                <p className="text-site-gray-700 text-sm leading-[22px]">
+                  Not sure what your skin needs? Our skincare experts are here
+                  to guide you — any time, any day.
+                </p>
               </div>
-            </div>
-          </div> */}
-
-            {/* Our community */}
-            {/* <div className="bg-site-gray-50 border-site-gray-100 my-10 space-y-3 rounded-[10px] border p-5 md:p-8">
-            <h4 className="text-site-gray-900 text-[32px]">
-              Join Our Community
-            </h4>
-            <p className="text-site-gray-700 text-sm leading-[22px]">
-              We're more than a store — we're a community that cares. Follow us
-              for skincare tips, updates on new products, and exclusive offers.
-              Let's make every day a glow day.
-            </p>
-            <div className="flex items-center gap-3">
-              <a
-                href="https://www.facebook.com/glowaro"
-                target="_blank"
-                className="hover:bg-site-primary/20 grid h-[38px] w-[38px] place-content-center rounded-full bg-white transition-colors"
-              >
-                <FaFacebook size={28} className="text-site-gray-900" />
-              </a>
-
-              <a
-                href="#"
-                target="_blank"
-                className="hover:bg-site-primary/20 grid h-[38px] w-[38px] place-content-center rounded-full bg-white transition-colors"
-              >
-                <FaTiktok size={24} className="text-site-gray-900" />
-              </a>
-
-              <a
-                href="https://www.youtube.com/channel/UCQPyA3Vf20QLK8yIF-62IOA"
-                target="_blank"
-                className="hover:bg-site-primary/20 grid h-[38px] w-[38px] place-content-center rounded-full bg-white transition-colors"
-              >
-                <FaYoutube size={25} className="text-site-gray-900" />
-              </a>
-
-              <a
-                href="https://www.instagram.com/glowaro"
-                target="_blank"
-                className="hover:bg-site-primary/20 grid h-[38px] w-[38px] place-content-center rounded-full bg-white transition-colors"
-              >
-                <FaInstagram size={25} className="text-site-gray-900" />
-              </a>
-            </div>
-          </div> */}
-
-            {/* Image gallery */}
-            <div className="grid grid-cols-1 gap-2 md:gap-4">
-              {/* Column 1 (now like old column 2) */}
-              {/* <div className="grid grid-cols-4 gap-4">
-              <div className="relative col-span-2 aspect-[426/283] w-full max-w-[426px] overflow-hidden rounded-[10px]">
-                <Image
-                  src="/images/legals/photo-1.png"
-                  alt="photo-1"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 426px"
-                  priority
-                />
-              </div>
-              <div className="relative aspect-[205/283] w-full max-w-[205px] overflow-hidden rounded-[10px]">
-                <Image
-                  src="/images/legals/photo-2.png"
-                  alt="person-3"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 205px"
-                  priority
-                />
-              </div>
-              <div className="relative aspect-[205/283] w-full max-w-[205px] overflow-hidden rounded-[10px]">
-                <Image
-                  src="/images/legals/photo-3.png"
-                  alt="person-3"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 205px"
-                  priority
-                />
-              </div>
-            </div> */}
-
-              {/* Column 2 (now like old column 1) */}
-              {/* <div className="grid grid-cols-4 gap-2 md:gap-4">
-              <div className="relative aspect-[205/283] w-full max-w-[205px] overflow-hidden rounded-[10px]">
-                <Image
-                  src="/images/legals/photo-4.png"
-                  alt="person-4"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 205px"
-                  priority
-                />
-              </div>
-              <div className="relative col-span-2 aspect-[426/283] w-full max-w-[426px] overflow-hidden rounded-[10px]">
-                <Image
-                  src="/images/legals/photo-5.png"
-                  alt="photo-5"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 426px"
-                  priority
-                />
-              </div>
-              <div className="relative aspect-[205/283] w-full max-w-[205px] overflow-hidden rounded-[10px]">
-                <Image
-                  src="/images/legals/photo-6.png"
-                  alt="person-6"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 205px"
-                  priority
-                />
-              </div>
-            </div> */}
             </div>
           </>
         )}
