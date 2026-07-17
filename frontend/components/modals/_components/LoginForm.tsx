@@ -133,7 +133,7 @@ const LoginForm = () => {
 
   // Google Login Handler
   const handleSuccess = async (credentialResponse: any) => {
-    const token = credentialResponse.access_token;
+    const token = credentialResponse.access_token || credentialResponse.code;
 
     const res = await fetch(apiBaseUrl + "/auth/social-login", {
       method: "POST",
@@ -185,8 +185,6 @@ const LoginForm = () => {
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => handleSuccess(codeResponse),
     onError: handleError,
-    flow: "implicit",
-    scope: "openid email profile",
   });
 
   // handle next button

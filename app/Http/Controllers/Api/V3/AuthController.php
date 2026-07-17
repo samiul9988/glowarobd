@@ -366,8 +366,27 @@ class AuthController extends Controller
     {
         if (isset($request->provider_id)) {
             try {
+                $provider = $request->provider_name;
+                $token = $request->provider_id;
+
+                // If token looks like an auth code (starts with "4/"), exchange it for access token
+                if (str_starts_with($token, '4/')) {
+                    $client = new \GuzzleHttp\Client();
+                    $response = $client->post('https://oauth2.googleapis.com/token', [
+                        'form_params' => [
+                            'code' => $token,
+                            'client_id' => config('services.google.client_id'),
+                            'client_secret' => config('services.google.client_secret'),
+                            'redirect_uri' => 'postmessage',
+                            'grant_type' => 'authorization_code',
+                        ],
+                    ]);
+                    $data = json_decode((string) $response->getBody(), true);
+                    $token = $data['access_token'] ?? $token;
+                }
+
                 // get the provider's user. (In the provider server)
-                $providerUser = Socialite::driver($request->provider_name)->userFromToken($request->provider_id);
+                $providerUser = Socialite::driver($provider)->userFromToken($token);
 
                 if (! $providerUser) {
                     return response()->json([
@@ -404,6 +423,10 @@ class AuthController extends Controller
 
                 return $this->loginSuccess($tokenResult, $user);
             } catch (\Throwable $th) {
+                \Log::error('Social login error: ' . $th->getMessage(), [
+                    'provider' => $request->provider_name ?? 'unknown',
+                    'token_len' => strlen($request->provider_id ?? ''),
+                ]);
                 return response()->json([
                     'result' => false,
                     'message' => 'Provider name or token not valid',
