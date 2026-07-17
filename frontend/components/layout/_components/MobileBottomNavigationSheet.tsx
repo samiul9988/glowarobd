@@ -24,7 +24,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/navigation";
 
 interface DataType {
   type: string;
@@ -42,6 +42,7 @@ const MobileBottomNavigationSheet = () => {
   const { user, logout } = useSession();
   const { setOpen } = useAuthModalStore();
   const { setIsLogin } = useFormControl();
+  const router = useRouter();
 
   /** Fetch user data */
   const { data: userData } = useQuery({
@@ -303,9 +304,8 @@ const MobileBottomNavigationSheet = () => {
                 <div className="mt-12 space-y-3">
                   <button
                     onClick={() => {
-                      setOpen(true);
                       setShow(false);
-                      setIsLogin(true);
+                      router.push("/auth/login");
                     }}
                     className="bg-site-primary hover:bg-site-primary-600 w-full flex-1 cursor-pointer rounded-lg px-6 py-3 text-base font-medium text-white transition-colors focus:outline-none"
                   >
@@ -313,9 +313,8 @@ const MobileBottomNavigationSheet = () => {
                   </button>
                   <button
                     onClick={() => {
-                      setOpen(true);
                       setShow(false);
-                      setIsLogin(false);
+                      router.push("/auth/registration");
                     }}
                     className="bg-site-gray-700 hover:bg-site-gray-900 w-full flex-1 cursor-pointer rounded-lg px-6 py-3 text-base font-medium text-white transition-colors focus:outline-none"
                   >
