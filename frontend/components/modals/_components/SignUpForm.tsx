@@ -145,6 +145,7 @@ const SignUpForm = () => {
 
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => handleSuccess(codeResponse),
+    flow: "implicit",
     onError: handleError,
   });
 

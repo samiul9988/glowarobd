@@ -185,6 +185,8 @@ const LoginForm = () => {
   const login = useGoogleLogin({
     onSuccess: (codeResponse) => handleSuccess(codeResponse),
     onError: handleError,
+    flow: "implicit",
+    scope: "openid email profile",
   });
 
   // handle next button
