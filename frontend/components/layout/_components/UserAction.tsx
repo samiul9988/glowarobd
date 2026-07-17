@@ -45,11 +45,11 @@ export default function UserActions() {
       />
 
       {/* User Profile */}
-      <div className="hidden md:block">
+      <div className="">
         {accessToken ? (
           <Link
             href="/dashboard"
-            className="shover:bg-site-gray-100/60 flex h-[44px] w-[44px] items-center justify-center rounded-full bg-[#FFFFFFCC] p-1 transition-all md:p-1.5"
+            className="hover:bg-site-gray-100/60 flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#FFFFFFCC] p-1 transition-all md:h-[44px] md:w-[44px] md:p-1.5"
           >
             <UserRound
               width={32}
@@ -59,8 +59,7 @@ export default function UserActions() {
           </Link>
         ) : (
           <Link
-            className="hover:bg-site-gray-100/60 flex h-[32px] w-[32px] cursor-pointer items-center justify-center rounded-full bg-[#FFFFFFCC] p-1 transition-all md:p-1.5 lg:h-[44px] lg:w-[44px]"
-            //   onClick={() => setOpen(true)}
+            className="hover:bg-site-gray-100/60 flex h-[42px] w-[42px] cursor-pointer items-center justify-center rounded-full bg-[#FFFFFFCC] p-1 transition-all md:h-[44px] md:w-[44px] md:p-1.5"
             href="/auth/login"
           >
             <UserRound
@@ -73,7 +72,7 @@ export default function UserActions() {
       </div>
 
       {/* Cart */}
-      <div className="hidden md:block">
+      <div className="">
         <Cart />
       </div>
     </div>
