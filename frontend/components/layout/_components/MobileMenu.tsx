@@ -207,6 +207,28 @@ const MobileMenu = ({ logo, categories, appLinks }: Props) => {
               {/* Static links section */}
               <div className="mt-5 space-y-2">
                 <Link
+                  href={"/auth/login"}
+                  className="bg-site-gray-50 group flex items-center gap-3 rounded-[10px] px-4 py-3"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <MobileMenuPurchaseIcon />
+                  <span className="text-site-gray-600 group-hover:text-site-primary text-sm font-medium transition-colors">
+                    Login
+                  </span>
+                </Link>
+
+                <Link
+                  href={"/auth/registration"}
+                  className="bg-site-gray-50 group flex items-center gap-3 rounded-[10px] px-4 py-3"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <MobileMenuPurchaseIcon />
+                  <span className="text-site-gray-600 group-hover:text-site-primary text-sm font-medium transition-colors">
+                    Sign Up
+                  </span>
+                </Link>
+
+                <Link
                   href={"/"}
                   className="bg-site-gray-50 group flex items-center gap-3 rounded-[10px] px-4 py-3"
                   onClick={() => setIsOpen(false)}
