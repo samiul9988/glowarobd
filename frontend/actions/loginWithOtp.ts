@@ -1,4 +1,4 @@
-'use server";';
+"use server"
 
 import { apiBaseUrl } from "@/config/apiConfig";
 import { fetcher } from "@/lib/fetcher";
