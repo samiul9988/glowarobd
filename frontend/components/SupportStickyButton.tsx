@@ -19,7 +19,7 @@ const SupportStickyButton = () => {
       label: "WhatsApp",
       icon: <IoLogoWhatsapp className="text-[26px] md:text-[34px]" />,
       color: "bg-[#29A71A]",
-      link: "https://wa.me/+8801714117604",
+      link: "https://wa.me/+8801800000000",
     },
     {
       id: 2,
@@ -33,7 +33,7 @@ const SupportStickyButton = () => {
       label: "Call",
       icon: <IoCall className="text-[24px] md:text-[32px]" />,
       color: "bg-[#E95285]",
-      link: "tel:+8809666767604",
+      link: "tel:+8801800000000",
     },
   ];
 
