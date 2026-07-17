@@ -40,7 +40,7 @@ const ProductCategory = async ({ params }: Props) => {
   const subResponse = category?.id
     ? await cacheableFetcher<{ data: Category[] }>(
         `/sub-categories/${category.id}`,
-        { next: { revalidate: 3600 } },
+        { next: { revalidate: 300 } },
       )
     : null;
 
