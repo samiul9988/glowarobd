@@ -3,6 +3,7 @@
 import { imageBaseUrl } from "@/config/apiConfig";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -13,6 +14,7 @@ import "swiper/css/pagination";
 interface SliderType {
   photo: string;
   photo_web: string;
+  url?: string;
 }
 
 interface Props {
@@ -47,25 +49,29 @@ export default function HeroSlider({ data: slides }: Props) {
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
             <div className="relative">
-              {/* Desktop image */}
-              {slide.photo_web && (
-                <Image
-                  src={imageBaseUrl + slide.photo_web}
-                  alt="Slide image desktop"
-                  className="h-full w-full rounded-sm object-cover md:rounded-md"
-                  width={1600}
-                  height={528}
-                />
+              {slide.url ? (
+                <Link href={slide.url} prefetch={false}>
+                  {slide.photo_web && (
+                    <Image
+                      src={imageBaseUrl + slide.photo_web}
+                      alt="Slide image desktop"
+                      className="h-full w-full rounded-sm object-cover md:rounded-md"
+                      width={1600}
+                      height={528}
+                    />
+                  )}
+                </Link>
+              ) : (
+                slide.photo_web && (
+                  <Image
+                    src={imageBaseUrl + slide.photo_web}
+                    alt="Slide image desktop"
+                    className="h-full w-full rounded-sm object-cover md:rounded-md"
+                    width={1600}
+                    height={528}
+                  />
+                )
               )}
-
-              {/* Mobile image */}
-              {/* <Image
-                src={imageBaseHostUrl + (slide.photo || slide.photo_web)}
-                alt="Slide image mobile"
-                className="w-full h-[400px] object-cover rounded-2xl block lg:hidden"
-                width={1600}
-                height={528}
-              /> */}
             </div>
           </SwiperSlide>
         ))}
