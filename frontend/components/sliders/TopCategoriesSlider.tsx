@@ -69,7 +69,7 @@ export default function TopCategoriesSlider({ data }: Props) {
         <div
             className="
             no-scrollbar 
-            md:grid md:grid-cols-5 md:gap-x-5 md:gap-y-8 md:overflow-hidden
+            md:grid md:grid-cols-5 md:grid-rows-1 md:gap-x-5 md:gap-y-8 md:overflow-hidden
             
             grid 
             grid-flow-col 
