@@ -94,13 +94,14 @@ export default function SearchBar({
   useEffect(() => {
     if (animPaused) return;
     const current = TOP_SELLING[animIdxRef.current];
-    const speed = deletingRef.current ? 40 : 80;
+    const atEnd = charIdxRef.current >= current.length;
+    const speed = deletingRef.current ? 55 : atEnd ? 1500 : 120;
 
     timerRef.current = setTimeout(() => {
       if (!deletingRef.current) {
         charIdxRef.current++;
         setPlaceholderText(current.slice(0, charIdxRef.current));
-        if (charIdxRef.current === current.length) {
+        if (charIdxRef.current >= current.length) {
           deletingRef.current = true;
         }
       } else {
