@@ -194,7 +194,7 @@ const FooterWrapper = ({
                   <li className="group inline-flex items-center">
                     <Link
                       href="/flash-deals"
-                      className="text-gray-800 flex items-center gap-3 text-sm font-medium transition-colors group-hover:text-gray-800 md:text-[22px]"
+                      className="text-gray-800 flex items-center gap-3 text-sm font-normal transition-colors group-hover:text-gray-800"
                     >
                       Offers
                     </Link>
@@ -202,7 +202,7 @@ const FooterWrapper = ({
                   <li className="group inline-flex items-center">
                     <Link
                       href="/wishlist"
-                      className="text-gray-800 flex items-center gap-3 text-sm font-medium transition-colors group-hover:text-gray-800 md:text-[22px]"
+                      className="text-gray-800 flex items-center gap-3 text-sm font-normal transition-colors group-hover:text-gray-800"
                     >
                       Wishlist
                     </Link>
@@ -210,7 +210,7 @@ const FooterWrapper = ({
                   <li className="group inline-flex items-center">
                     <Link
                       href="/blogs"
-                      className="text-gray-800 flex items-center gap-3 text-sm font-medium transition-colors group-hover:text-gray-800 md:text-[22px]"
+                      className="text-gray-800 flex items-center gap-3 text-sm font-normal transition-colors group-hover:text-gray-800"
                     >
                       Blogs
                     </Link>
@@ -218,7 +218,7 @@ const FooterWrapper = ({
                   <li className="group inline-flex items-center">
                     <Link
                       href="/cart"
-                      className="text-gray-800 flex items-center gap-3 text-sm font-medium transition-colors group-hover:text-gray-800 md:text-[22px]"
+                      className="text-gray-800 flex items-center gap-3 text-sm font-normal transition-colors group-hover:text-gray-800"
                     >
                       My Bag
                     </Link>
@@ -226,7 +226,7 @@ const FooterWrapper = ({
                   <li className="group inline-flex items-center">
                     <Link
                       href="/my-orders"
-                      className="text-gray-800 flex items-center gap-3 text-sm font-medium transition-colors group-hover:text-gray-800 md:text-[22px]"
+                      className="text-gray-800 flex items-center gap-3 text-sm font-normal transition-colors group-hover:text-gray-800"
                     >
                       My Orders
                     </Link>
@@ -248,7 +248,7 @@ const FooterWrapper = ({
                         social?.icon && (
                           <li key={index}>
                             <Link
-                              className="text-gray-800 flex items-center gap-3 text-[23px]"
+                              className="text-gray-800 flex items-center gap-3 text-sm font-normal"
                               href={social.href}
                               target="_blank"
                             >
@@ -272,7 +272,7 @@ const FooterWrapper = ({
                   <li className="group inline-flex items-center">
                     <Link
                       href="/page/returnpolicy"
-                      className="text-gray-800 flex items-center gap-3 text-sm font-medium transition-colors group-hover:text-gray-800 md:text-[22px]"
+                      className="text-gray-800 flex items-center gap-3 text-sm font-normal transition-colors group-hover:text-gray-800"
                     >
                       Moisturizer
                     </Link>
@@ -280,7 +280,7 @@ const FooterWrapper = ({
                   <li className="group inline-flex items-center">
                     <Link
                       href="/page/shipping-delivery"
-                      className="text-gray-800 flex items-center gap-3 text-sm font-medium transition-colors group-hover:text-gray-800 md:text-[22px]"
+                      className="text-gray-800 flex items-center gap-3 text-sm font-normal transition-colors group-hover:text-gray-800"
                     >
                       Skincare
                     </Link>
@@ -288,7 +288,7 @@ const FooterWrapper = ({
                   <li className="group inline-flex items-center">
                     <Link
                       href="/page/terms"
-                      className="text-gray-800 flex items-center gap-3 text-sm font-medium transition-colors group-hover:text-gray-800 md:text-[22px]"
+                      className="text-gray-800 flex items-center gap-3 text-sm font-normal transition-colors group-hover:text-gray-800"
                     >
                       Hair Care
                     </Link>
@@ -296,7 +296,7 @@ const FooterWrapper = ({
                   <li className="group inline-flex items-center">
                     <Link
                       href="/page/privacypolicy"
-                      className="text-gray-800 flex items-center gap-3 text-sm font-medium transition-colors group-hover:text-gray-800 md:text-[22px]"
+                      className="text-gray-800 flex items-center gap-3 text-sm font-normal transition-colors group-hover:text-gray-800"
                     >
                       Sunscreen
                     </Link>
@@ -304,7 +304,7 @@ const FooterWrapper = ({
                   <li className="group inline-flex items-center">
                     <Link
                       href="/page/privacypolicy"
-                      className="text-gray-800 flex items-center gap-3 text-sm font-medium transition-colors group-hover:text-gray-800 md:text-[22px]"
+                      className="text-gray-800 flex items-center gap-3 text-sm font-normal transition-colors group-hover:text-gray-800"
                     >
                       K-Beauty
                     </Link>
@@ -322,7 +322,7 @@ const FooterWrapper = ({
                   <li className="group inline-flex items-center">
                     <Link
                       href="/pages/about-us"
-                      className="text-gray-800 flex items-center gap-3 text-sm font-medium transition-colors group-hover:text-gray-800 md:text-[22px]"
+                      className="text-gray-800 flex items-center gap-3 text-sm font-normal transition-colors group-hover:text-gray-800"
                     >
                       About Us
                     </Link>
@@ -330,7 +330,7 @@ const FooterWrapper = ({
                   <li className="group inline-flex items-center">
                     <Link
                       href="#"
-                      className="text-gray-800 flex items-center gap-3 text-sm font-medium transition-colors group-hover:text-gray-800 md:text-[22px]"
+                      className="text-gray-800 flex items-center gap-3 text-sm font-normal transition-colors group-hover:text-gray-800"
                     >
                       Terms & Conditions
                     </Link>
@@ -338,7 +338,7 @@ const FooterWrapper = ({
                   <li className="group inline-flex items-center">
                     <Link
                       href="#"
-                      className="text-gray-800 flex items-center gap-3 text-sm font-medium transition-colors group-hover:text-gray-800 md:text-[22px]"
+                      className="text-gray-800 flex items-center gap-3 text-sm font-normal transition-colors group-hover:text-gray-800"
                     >
                       Returns & Refunds
                     </Link>
@@ -346,7 +346,7 @@ const FooterWrapper = ({
                   <li className="group inline-flex items-center">
                     <Link
                       href="/page/about-us"
-                      className="text-gray-800 flex items-center gap-3 text-sm font-medium transition-colors group-hover:text-gray-800 md:text-[22px]"
+                      className="text-gray-800 flex items-center gap-3 text-sm font-normal transition-colors group-hover:text-gray-800"
                     >
                       Warranty Policy
                     </Link>
@@ -354,7 +354,7 @@ const FooterWrapper = ({
                   <li className="group inline-flex items-center">
                     <Link
                       href="/page/privacy"
-                      className="text-gray-800 flex items-center gap-3 text-sm font-medium transition-colors group-hover:text-gray-800 md:text-[22px]"
+                      className="text-gray-800 flex items-center gap-3 text-sm font-normal transition-colors group-hover:text-gray-800"
                     >
                       Privacy Policy
                     </Link>
@@ -362,7 +362,7 @@ const FooterWrapper = ({
                   <li className="group inline-flex items-center">
                     <Link
                       href="/page/how-to-buy"
-                      className="text-gray-800 flex items-center gap-3 text-sm font-medium transition-colors group-hover:text-gray-800 md:text-[22px]"
+                      className="text-gray-800 flex items-center gap-3 text-sm font-normal transition-colors group-hover:text-gray-800"
                     >
                       How to Buy
                     </Link>
