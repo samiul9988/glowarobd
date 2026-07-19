@@ -4,6 +4,20 @@ import {
   HistoryIcon,
   SearchCategoryIcon,
 } from "@/components/icons/icon-library";
+
+const TOP_SELLING = [
+  "The Ordinary Niacinamide 10% + Zinc 1%",
+  "Cosrx Advanced Snail 96 Mucin Essence",
+  "Cosrx Low pH Good Morning Cleanser",
+  "Skin Aqua Super Moisture Gel SPF50",
+  "AXIS-Y Dark Spot Correcting Glow Serum",
+  "iUNIK Centella Calming Gel Cream",
+  "Beauty of Joseon Ginseng Essence",
+  "Missha Soft Finish Sun Milk",
+  "COSRX Salicylic Acid Gentle Cleanser",
+  "Some By Mi AHA BHA PHA 30 Days Toner",
+];
+
 import { Input } from "@/components/ui/input";
 import { imageBaseHostUrl } from "@/config/apiConfig";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
@@ -61,6 +75,12 @@ export default function SearchBar({
   const [instantSearch, setInstantSearch] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
+  const [placeholderText, setPlaceholderText] = useState("");
+  const [animPaused, setAnimPaused] = useState(false);
+  const animIdxRef = useRef(0);
+  const charIdxRef = useRef(0);
+  const deletingRef = useRef(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const router = useRouter();
   const { suggestions, addSuggestion } = useSearchHistory();
   const isMobile = useMediaQuery("(max-width: 1024px)");
@@ -70,6 +90,33 @@ export default function SearchBar({
       searchRef.current?.focus();
     }
   }, [isMobile]);
+
+  useEffect(() => {
+    if (animPaused) return;
+    const current = TOP_SELLING[animIdxRef.current];
+    const speed = deletingRef.current ? 40 : 80;
+
+    timerRef.current = setTimeout(() => {
+      if (!deletingRef.current) {
+        charIdxRef.current++;
+        setPlaceholderText(current.slice(0, charIdxRef.current));
+        if (charIdxRef.current === current.length) {
+          deletingRef.current = true;
+        }
+      } else {
+        charIdxRef.current--;
+        setPlaceholderText(current.slice(0, charIdxRef.current));
+        if (charIdxRef.current === 0) {
+          deletingRef.current = false;
+          animIdxRef.current = (animIdxRef.current + 1) % TOP_SELLING.length;
+        }
+      }
+    }, speed);
+
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [placeholderText, animPaused]);
 
   const { categories, products, loading, hasSearched } =
     useProductSearch(search);
@@ -136,6 +183,7 @@ export default function SearchBar({
     }
 
     setFocused(true);
+    setAnimPaused(true);
   };
 
   return (
@@ -192,16 +240,17 @@ export default function SearchBar({
             <Input
               ref={searchRef}
               type="text"
-              placeholder="Search Products"
+              placeholder={animPaused ? "Search Products" : placeholderText || "Search Products"}
               className="placeholder:text-site-gray-400 focus:!border-site-primary-500 hover:border-site-primary-500 border-site-gray-100 text-site-gray-700 h-11 rounded-full border !bg-[#FFFFFFCC] pr-16 pl-6 transition focus-visible:ring-0"
               value={search}
               onChange={(e) => {
                 setSearch(e.target.value);
                 setLastTypedTime(Date.now());
-                setInstantSearch(false); // reset instant flag when typing again
+                setInstantSearch(false);
+                setAnimPaused(true);
               }}
               onFocus={handleFocus}
-              onBlur={() => setFocused(false)}
+              onBlur={() => { setFocused(false); if (!search.trim()) setAnimPaused(false); }}
             />
           </form>
 
