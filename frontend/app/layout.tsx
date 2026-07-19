@@ -114,6 +114,8 @@ export async function generateMetadata() {
     "glowaro,glowaro skincare,glowaro skincare,";
   const metaImage =
     settings.find((item) => item.type === "meta_image")?.value || defaultImage;
+  const siteIcon =
+    settings.find((item) => item.type === "site_icon")?.image_url || "/favicon.ico";
   return {
     title: metaTitle,
     description: metaDescription,
@@ -137,21 +139,12 @@ export async function generateMetadata() {
       ],
       type: "website",
     },
-    // icons: {
-    //   icon: [
-    //     { url: "/images/glowaro-favicon.png" },
-    //     {
-    //       url: "/images/glowaro-favicon.png",
-    //       sizes: "32x32",
-    //       type: "image/png",
-    //     },
-    //     {
-    //       url: "/images/glowaro-favicon.png",
-    //       sizes: "64x64",
-    //       type: "image/png",
-    //     },
-    //   ],
-    //   apple: [{ url: "/images/glowaro-favicon.png" }],
-    // },
+    icons: {
+      icon: [
+        { url: siteIcon },
+        { url: siteIcon, sizes: "32x32", type: "image/png" },
+      ],
+      apple: [{ url: siteIcon }],
+    },
   };
 }
