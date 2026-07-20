@@ -1,73 +1,175 @@
 "use client";
 
 import { imageBaseHostUrl } from "@/config/apiConfig";
-import { Star } from "lucide-react";
-// import { useCartStore } from "@/store/useCartStore";
+import { api } from "@/lib/axios";
+import { cn } from "@/lib/utils";
+import { useAuthModalStore } from "@/store/useAuthModalStore";
+import { useGuestUserId } from "@/store/useGuestStore";
+import { useToken } from "@/store/useTokenStore";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Handbag, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { GoStarFill } from "react-icons/go";
+
+const fallback = "/images/placeholder.png";
 
 const ProductCard = (product: ProductType) => {
   const {
+    id,
     name,
     main_price,
     thumbnail_image,
     stroked_price,
     is_new,
-    is_preorder,
     in_stock,
     current_stock,
     has_discount,
     web_price,
     slug,
-    rating,
     total_reviews,
     formatted_discount,
   } = product;
-  // const { addToCart } = useCartStore();
 
   const [imgSrc, setImgSrc] = useState(imageBaseHostUrl + thumbnail_image);
-  const fallback = "/images/placeholder.png";
+
+  const { accessToken } = useToken();
+  const { setOpen } = useAuthModalStore();
+  const { guestId, createGuestId } = useGuestUserId();
+  const queryClient = useQueryClient();
+  const userId = accessToken ? undefined : (guestId || createGuestId());
+
+  const currentUserId = accessToken || userId;
+
+  // --- Wishlist check ---
+  const { data: isWishListed, refetch: refetchWishlist } = useQuery({
+    queryKey: ["is_wish_listed", id, currentUserId],
+    enabled: !!id && !!currentUserId,
+    queryFn: async () => {
+      const { data } = await api.get(
+        `/wishlists-check-product?product_id=${id}&user_id=${currentUserId}`,
+      );
+      return data as { is_in_wishlist: boolean; wishlist_id: number };
+    },
+  });
+
+  // --- Add to cart ---
+  const { mutate: addToCart, isPending: cartPending } = useMutation({
+    mutationKey: ["add_to_cart", currentUserId],
+    mutationFn: async () => {
+      const { data } = await api.post("/carts/add", {
+        id,
+        variant: "",
+        user_id: currentUserId,
+        quantity: 1,
+      });
+      return data as { result: boolean; message: string };
+    },
+    onSuccess: (data) => {
+      if (data.result === false) {
+        toast.error(data.message);
+      } else {
+        toast.success("Added to cart");
+      }
+      queryClient.invalidateQueries({ queryKey: ["get_cart", currentUserId] });
+      queryClient.invalidateQueries({ queryKey: ["get_subtotal", currentUserId] });
+    },
+    onError: () => toast.error("Something went wrong"),
+  });
+
+  // --- Wishlist toggle ---
+  const { mutate: toggleWishlist } = useMutation({
+    mutationKey: ["toggle_wishlist", id, currentUserId],
+    mutationFn: async () => {
+      if (isWishListed?.is_in_wishlist) {
+        await api.delete(`/wishlists/${isWishListed.wishlist_id}`, {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        });
+      } else {
+        await api.post("/wishlists", { product_id: id, user_id: currentUserId });
+      }
+    },
+    onSuccess: () => {
+      if (isWishListed?.is_in_wishlist) {
+        toast.success("Removed from wishlist");
+      } else {
+        toast.success("Added to wishlist");
+      }
+      refetchWishlist();
+      queryClient.invalidateQueries({ queryKey: ["wishlist", currentUserId] });
+    },
+    onError: () => toast.error("Something went wrong"),
+  });
+
+  const handleWishlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleWishlist();
+  };
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart();
+  };
+
+  const outOfStock = !in_stock || current_stock <= 0;
+
   return (
     <div className="group border-site-gray-50 shadow-custom relative flex flex-col overflow-clip rounded-[10px] border bg-white">
-      {/* Product Badges */}
-      {in_stock && current_stock > 0 ? (
+      {/* Badges */}
+      {!outOfStock ? (
         <div className="absolute top-1 left-1 z-10 flex flex-col items-start gap-1 lg:top-2 lg:left-2">
-          {/* Discount badge */}
           {has_discount && formatted_discount?.trim() !== "" && (
-            <span className="font-bold rounded-full bg-[#FA045B] px-2 py-1 text-xs  text-white">
+            <span className="rounded-full bg-[#FA045B] px-2 py-1 text-xs font-bold text-white">
               {formatted_discount}
             </span>
           )}
-
-          {/* New badge */}
           {is_new && (
-            <span className="font-bold rounded-full bg-[#2B6BF4] px-2 py-1 text-xs  text-white">
+            <span className="rounded-full bg-[#2B6BF4] px-2 py-1 text-xs font-bold text-white">
               NEW
             </span>
           )}
         </div>
       ) : (
-        // Stock out badge //absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2
-        (!in_stock || current_stock <= 0) && (
-          <span className="font-bold absolute top-1 left-1 z-10 flex w-fit flex-col items-start gap-1 rounded-full bg-site-gray-900 px-2 py-1 text-xs  text-white opacity-100 lg:top-2 lg:left-2">
-            STOCK OUT
-          </span>
-        )
+        <span className="absolute top-1 left-1 z-10 rounded-full bg-site-gray-900 px-2 py-1 text-xs font-bold text-white lg:top-2 lg:left-2">
+          STOCK OUT
+        </span>
       )}
 
-      {/* Heart */}
-      {/* <div className="absolute top-3 right-3 z-50 bg-white p-2 rounded-full shadow-md shadow-black/10 cursor-pointer">
-        <Heart
-          strokeWidth={1}
-          className="text-site-primary-600 hover:fill-site-primary-600"
-        />
-      </div> */}
+      {/* Wishlist Heart — hover on desktop, always on mobile */}
+      {in_stock && current_stock > 0 && (
+        <button
+          onClick={handleWishlist}
+          className={cn(
+            "absolute top-1 right-1 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-md shadow-black/10 transition-all duration-300 ease-out cursor-pointer",
+            "md:translate-x-2 md:opacity-0 md:group-hover:translate-x-0 md:group-hover:opacity-100",
+            "lg:top-2 lg:right-2 lg:h-9 lg:w-9",
+          )}
+        >
+          <Heart
+            size={18}
+            strokeWidth={1.5}
+            className={cn(
+              "transition-colors",
+              isWishListed?.is_in_wishlist
+                ? "fill-rose-500 text-rose-500"
+                : "text-site-gray-500 hover:text-rose-400",
+            )}
+          />
+        </button>
+      )}
+
+      {/* Product Image */}
       <Link
         href={`/product/${slug}`}
         prefetch={false}
-        className={`relative aspect-square overflow-hidden bg-white ${!in_stock && current_stock <= 0 && "opacity-50"}`}
+        className={cn(
+          "relative aspect-square overflow-hidden bg-white",
+          outOfStock && "opacity-50",
+        )}
       >
         <Image
           src={imgSrc}
@@ -82,54 +184,60 @@ const ProductCard = (product: ProductType) => {
         />
       </Link>
 
-      <div
-        className={`p-2 md:p-4 ${!in_stock && current_stock <= 0 && "opacity-50"}`}
-      >
-        <p className=" text-site-secondary-600 mb-1 text-sm font-normal flex items-center gap-1">
-            < GoStarFill size={14} className="text-[#FF9017]"/> 
-            <span className="font-bold text-site-gray-900">{total_reviews}</span>
-            Reviews
+      {/* Card Body */}
+      <div className={cn("flex flex-1 flex-col p-2 md:p-4", outOfStock && "opacity-50")}>
+        {/* Reviews */}
+        <p className="mb-1 flex items-center gap-1 text-sm font-normal text-site-secondary-600">
+          <GoStarFill size={14} className="text-[#FF9017]" />
+          <span className="font-bold text-site-gray-900">{total_reviews}</span>
+          Reviews
         </p>
-        {/* Product Title */}
+
+        {/* Title */}
         <Link
           prefetch={false}
           href={`/product/${slug}`}
           className="inline-flex min-h-10 items-center"
         >
-          <p className="text-site-gray-900 line-clamp-2 text-sm font-normal">
+          <p className="line-clamp-2 text-sm font-normal text-site-gray-900">
             {name}
           </p>
         </Link>
-        <div className="mt-3 flex flex-wrap items-center justify-between gap-1 md:mt-4 md:items-center">
-          <div className="nd:gap-2 relative flex items-center gap-1.5 md:flex-row">
-            
 
-            {/* Discount Price */}
-            {stroked_price && has_discount && (
-              <span className="">
-                <span className="text-site-gray-400 text-xs line-through md:text-base">
-                  {stroked_price}
-                </span>
-              </span>
-            )}
-            {/* Price */}
-            <span className="text-site-primary-600 text-sm font-bold md:text-[19px]">
-              {web_price}
+        {/* Price */}
+        <div className="mt-3 flex flex-wrap items-center gap-1.5 md:mt-4">
+          {stroked_price && has_discount && (
+            <span className="text-xs text-site-gray-400 line-through md:text-base">
+              {stroked_price}
             </span>
-          </div>
-
-          {/* Rating */}
-          {/* <span className="bg-site-gray-50 px-2.5 md:px-3 py-1 flex items-center gap-1 md:gap-2 rounded-full">
-            <MdStar className="text-[#FF9017]" />
-          </span> */}
+          )}
+          <span className="text-sm font-bold text-site-primary-600 md:text-[19px]">
+            {web_price}
+          </span>
         </div>
-        {/* <button
-          className="mt-4 flex items-center justify-center gap-1.5 text-white bg-site-primary hover:bg-site-primary/90 w-full rounded-full py-1.5 text-center text-sm transition-colors duration-300 ease-in-out cursor-pointer"
-          // onClick={() => addToCart({ ...product, quantity: 1 })}
+
+        {/* Add to Cart — hover on desktop, always on mobile */}
+        <div
+          className={cn(
+            "mt-auto pt-2 transition-all duration-300 ease-out",
+            "md:max-h-0 md:overflow-hidden md:opacity-0 md:group-hover:max-h-12 md:group-hover:opacity-100",
+            "max-md:max-h-12 max-md:opacity-100",
+          )}
         >
-          <Handbag size={22} strokeWidth={1} />
-          Add to cart
-        </button> */}
+          <button
+            onClick={handleAddToCart}
+            disabled={outOfStock || cartPending}
+            className={cn(
+              "flex w-full items-center justify-center gap-1.5 rounded-full py-2 text-center text-sm font-medium transition-colors cursor-pointer",
+              outOfStock
+                ? "cursor-not-allowed bg-gray-300 text-gray-500"
+                : "bg-site-primary text-white hover:bg-site-primary/90",
+            )}
+          >
+            <Handbag size={18} strokeWidth={1.5} />
+            {outOfStock ? "Stock Out" : cartPending ? "Adding..." : "Add to Cart"}
+          </button>
+        </div>
       </div>
     </div>
   );
